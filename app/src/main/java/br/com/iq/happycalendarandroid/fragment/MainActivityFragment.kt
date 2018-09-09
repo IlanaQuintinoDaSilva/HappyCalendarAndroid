@@ -1,10 +1,11 @@
-package br.com.iq.happycalendarandroid
+package br.com.iq.happycalendarandroid.fragment
 
 import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import br.com.iq.happycalendarandroid.R
 
 /**
  * A placeholder fragment containing a simple view.
