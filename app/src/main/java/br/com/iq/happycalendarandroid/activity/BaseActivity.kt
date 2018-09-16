@@ -1,8 +1,10 @@
 package br.com.iq.happycalendarandroid.activity
 
 import android.content.Context
+import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 
+@SuppressLint("Registered")
 open class BaseActivity : AppCompatActivity() {
     // property to access context from anywhere
     protected val context: Context get() = this
