@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.SavedStateExampleActivity" />
-        <activity android:name=".activity.ToDoListActivity"></activity>
+        <activity android:name=".activity.ToDoListActivity"
+            android:parentActivityName=".activity.MainActivity"/>
     </application>
 </manifest>
