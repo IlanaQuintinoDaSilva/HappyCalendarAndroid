@@ -1,3 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="icone_todo_adapter_width">250dp</dimen>
+    <dimen name="icone_todo_adapter_height">107dp</dimen>
 </resources>
