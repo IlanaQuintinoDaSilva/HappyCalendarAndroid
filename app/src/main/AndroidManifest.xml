@@ -21,5 +21,4 @@
         <activity android:name=".activity.SavedStateExampleActivity" />
         <activity android:name=".activity.ToDoListActivity"></activity>
     </application>
-
 </manifest>
