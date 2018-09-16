@@ -32,16 +32,16 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  *
  */
-class ToDosListFragment : BaseFragment() {
+class ToDoListFragment : BaseFragment() {
     // TODO: Rename and change types of parameters
-    private var categoryDesc = Category.Equilibrio
+    private var category = Category.Equilibrio
     private var toDos = listOf<ToDo>()
     var rvToDo: RecyclerView? = null
-    private var listener: OnFragmentInteractionListener? = null
+    //private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        categoryDesc = arguments?.getSerializable("category") as Category
+        category = arguments?.getSerializable("category") as Category
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +64,7 @@ class ToDosListFragment : BaseFragment() {
     }
 
     fun taskToDos(){
-        this.toDos = ToDoService.getToDos(requireContext(), categoryDesc)
+        this.toDos = ToDoService.getToDos(requireContext(), category)
 
         rvToDo?.adapter = ToDoAdapter(toDos,
                 {
@@ -74,33 +74,33 @@ class ToDosListFragment : BaseFragment() {
                 )
     }
 
-    override fun onAttach(context: Context) {
+    /*override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
             listener = context
         } else {
             throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
         }
-    }
+    }*/
 
-    override fun onDetach() {
+    /*override fun onDetach() {
         super.onDetach()
         listener = null
-    }
+    }*/
 
-    interface OnFragmentInteractionListener {
+    /*interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         fun onFragmentInteraction(uri: Uri)
-    }
+    }*/
 
-    companion object {
+    /*companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-                ToDosListFragment().apply {
+                ToDoListFragment().apply {
                     arguments = Bundle().apply {
                         putString(ARG_PARAM1, param1)
                         putString(ARG_PARAM2, param2)
                     }
                 }
-    }
+    }*/
 }

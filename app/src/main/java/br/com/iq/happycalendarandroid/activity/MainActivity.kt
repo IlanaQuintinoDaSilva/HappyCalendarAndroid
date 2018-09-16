@@ -10,6 +10,7 @@ import android.view.MenuItem
 import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.R.id.fab
 import br.com.iq.happycalendarandroid.R.id.toolbar
+import br.com.iq.happycalendarandroid.domain.Category
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -23,7 +24,8 @@ class MainActivity : BaseActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            val intent = Intent(context, SavedStateExampleActivity::class.java)
+            val intent = Intent(context, ToDoListActivity::class.java)
+            intent.putExtra("category", Category.Equilibrio)
             startActivity(intent)
         }
     }

@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SavedStateExampleActivity"></activity>
+        <activity android:name=".activity.SavedStateExampleActivity" />
+        <activity android:name=".activity.ToDoListActivity"></activity>
     </application>
 
 </manifest>
