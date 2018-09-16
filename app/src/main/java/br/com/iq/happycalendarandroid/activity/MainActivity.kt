@@ -11,6 +11,7 @@ import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.R.id.fab
 import br.com.iq.happycalendarandroid.R.id.toolbar
 import br.com.iq.happycalendarandroid.domain.Category
+import br.com.iq.happycalendarandroid.extensions.setupToolbar
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -21,7 +22,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        setupToolbar(R.id.toolbar)
 
         fab.setOnClickListener { view ->
             val intent = Intent(context, ToDoListActivity::class.java)
