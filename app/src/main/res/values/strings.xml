@@ -10,4 +10,7 @@
     <string name="casa">Casa</string>
     <string name="carreira">Carreira</string>
     <string name="todo_list_title">Atividades</string>
+    <string name="login">Login</string>
+    <string name="senha">Senha</string>
+    <string name="entrar">Entrar</string>
 </resources>
