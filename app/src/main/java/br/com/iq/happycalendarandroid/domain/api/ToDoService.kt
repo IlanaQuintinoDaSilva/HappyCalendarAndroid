@@ -10,19 +10,6 @@ import java.util.ArrayList
 class ToDoService{
     private var toDos: List<ToDo> = ArrayList()
 
-    fun getToDos(context: Context, category: Category): List<ToDo>{
-        val categoryString = context.getString(category.string)
-        val toDos = mutableListOf<ToDo>()
-        var t = ToDo()
-        t.description = "Needle Painting | Bordado, Por Ana Wasen"
-        t.category = Category.Equilibrio.string.toString()
-        toDos.add(t)
-        t.description = "Tricotin | Modelagem, Por Isis Kranz"
-        t.category = Category.Equilibrio.string.toString()
-        toDos.add(t)
-        return toDos
-    }
-
     fun getToDosSampleData(): List<ToDo>{
         val toDos = mutableListOf<ToDo>()
         toDos.add(feedToDoList("Bordado, Por Ana Wasen", "Needle Painting"))
@@ -30,10 +17,9 @@ class ToDoService{
         return toDos
     }
 
-    private fun feedToDoList(description: String, category: String): ToDo{
+    private fun feedToDoList(projectName: String, category: String): ToDo{
         var toDo = ToDo()
-        toDo.description = description
-        toDo.category = category
+        toDo.setProject(projectName, category)
         return toDo
     }
 }
