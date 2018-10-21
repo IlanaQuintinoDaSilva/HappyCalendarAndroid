@@ -8,7 +8,7 @@ class ToDo{
 
     fun setProject(name: String, category: String){
         project.name = name
-        project.category = category
+        project.setCategory(category)
     }
 
     fun setAssignee(firstName: String, lastName: String){
