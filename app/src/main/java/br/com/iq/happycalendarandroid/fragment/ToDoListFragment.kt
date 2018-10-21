@@ -18,29 +18,15 @@ import br.com.iq.happycalendarandroid.domain.Category
 import br.com.iq.happycalendarandroid.domain.ToDo
 import br.com.iq.happycalendarandroid.domain.api.ToDoService
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [ToDosListFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [ToDosListFragment.newInstance] factory method to
- * create an instance of this fragment.
- *
- */
 class ToDoListFragment : BaseFragment() {
-    // TODO: Rename and change types of parameters
     private var category = Category.Equilibrio
-    private var toDos = listOf<ToDo>()
+    private var toDos: List<ToDo> = ArrayList()
+    private var service = ToDoService()
     var rvToDo: RecyclerView? = null
-    //private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getToDos()
         category = arguments?.getSerializable("category") as Category
     }
 
@@ -58,12 +44,11 @@ class ToDoListFragment : BaseFragment() {
         rvToDo?.setHasFixedSize(true)
     }
 
-    override fun onResume(){
-        super.onResume()
-        taskToDos()
+    private fun onClickItem(toDo: ToDo) {
+
     }
 
-    fun taskToDos(){
+    /*    fun taskToDos(){
         this.toDos = ToDoService.getToDos(requireContext(), category)
 
         rvToDo?.adapter = ToDoAdapter(toDos,
@@ -72,35 +57,18 @@ class ToDoListFragment : BaseFragment() {
                     System.out.println("Oi!")
                 }
                 )
+    }*/
+
+    override fun onResume(){
+        super.onResume()
+        setupAdapter(toDos)
     }
 
-    /*override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-        }
-    }*/
+    private fun setupAdapter(list: List<ToDo>){
+        rvToDo?.adapter = ToDoAdapter(toDos) { onClickItem(it) }
+    }
 
-    /*override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }*/
-
-    /*interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
-    }*/
-
-    /*companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-                ToDoListFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
-                }
-    }*/
+    private fun getToDos(){
+        toDos = service.getToDosSampleData()
+    }
 }

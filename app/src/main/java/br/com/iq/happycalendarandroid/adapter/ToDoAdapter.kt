@@ -13,28 +13,30 @@ import kotlinx.android.synthetic.main.adapter_todo.view.*
 class ToDoAdapter(
         val toDos: List<ToDo>,
         val onClick: (ToDo) -> Unit) : RecyclerView.Adapter<ToDoAdapter.ToDosViewHolder>(){
-    class ToDosViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        var tDescription: TextView
-        var cardView: CardView
-        init {
-            tDescription = view.findViewById<TextView>(R.id.tDescription)
-            cardView = view.findViewById<CardView>(R.id.cvToDo)
-        }
-    }
-
-    override fun getItemCount() = this.toDos.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDosViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.adapter_todo, parent, false)
-        val holder = ToDosViewHolder(view)
-        return holder
+        return ToDosViewHolder(view)
     }
 
+    class ToDosViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)/*{
+        var tDescription: TextView
+        var cardView: CardView
+        init {
+            tDescription = view.findViewById(R.id.tDescription)
+            cardView = view.findViewById(R.id.cvToDo)
+        }
+    }*/
+
     override fun onBindViewHolder(holder: ToDosViewHolder, position: Int) {
-        /*//context constant will be used only when a picture is downloaded, using Picasso lib.
-        val context = holder.itemView.context*/
         val toDo = toDos[position]
-        holder.tDescription.text = toDo.description
+        val itemView = holder.itemView
+
+        with(itemView){
+            tDescription.text = toDo.category + " | " + toDo.description
+        }
         holder.itemView.setOnClickListener{onClick(toDo)}
     }
+
+    override fun getItemCount() = this.toDos.size
 }
