@@ -25,14 +25,15 @@ class ToDoService{
 
     fun getToDosSampleData(): List<ToDo>{
         val toDos = mutableListOf<ToDo>()
-        var t = ToDo()
-        t.description = "Bordado, Por Ana Wasen"
-        t.category = "Needle Painting"
-        toDos.add(t)
-        var t2 = ToDo()
-        t2.description = "Modelagem, Por Isis Kranz"
-        t2.category = "Tricotin"
-        toDos.add(t2)
+        toDos.add(feedToDoList("Bordado, Por Ana Wasen", "Needle Painting"))
+        toDos.add(feedToDoList("Modelagem, Por Isis Kranz", "Tricotin"))
         return toDos
+    }
+
+    private fun feedToDoList(description: String, category: String): ToDo{
+        var toDo = ToDo()
+        toDo.description = description
+        toDo.category = category
+        return toDo
     }
 }
