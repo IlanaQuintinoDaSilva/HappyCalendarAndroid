@@ -33,7 +33,8 @@ class ToDoAdapter(
         val itemView = holder.itemView
 
         with(itemView){
-            tDescription.text = toDo.project.category + " | " + toDo.project.name
+            tDescription.text = toDo.project.category + " | " + toDo.project.name + ", Por " + toDo.assignee.firstName + " " + toDo.assignee.lastName
+
         }
         holder.itemView.setOnClickListener{onClick(toDo)}
     }

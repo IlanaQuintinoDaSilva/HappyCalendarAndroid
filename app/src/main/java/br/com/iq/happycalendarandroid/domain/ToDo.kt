@@ -4,13 +4,17 @@ class ToDo{
     var id: Long = 0
     var description: String = ""
     var project: Project = Project()
-    var category: String = ""
+    var assignee: Assignee = Assignee()
 
     fun setProject(name: String, category: String){
         project.name = name
         project.category = category
     }
 
+    fun setAssignee(firstName: String, lastName: String){
+        assignee.firstName = firstName
+        assignee.lastName = lastName
+    }
 
     override fun toString(): String{
         return "ToDo(description='$description')"
