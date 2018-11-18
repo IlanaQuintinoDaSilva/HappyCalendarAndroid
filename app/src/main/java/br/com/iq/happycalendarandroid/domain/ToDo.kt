@@ -11,6 +11,12 @@ class ToDo{
         project.setCategory(category)
     }
 
+    fun setDescription(name: String, category: String, description: String){
+        project.name = name
+        project.setCategory(category)
+        this.description = description
+    }
+
     fun setAssignee(firstName: String, lastName: String){
         assignee.firstName = firstName
         assignee.lastName = lastName

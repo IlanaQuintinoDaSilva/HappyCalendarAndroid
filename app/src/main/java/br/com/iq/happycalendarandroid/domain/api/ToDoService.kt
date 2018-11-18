@@ -1,5 +1,6 @@
 package br.com.iq.happycalendarandroid.domain.api
 
+import android.content.ClipDescription
 import android.content.Context
 import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.domain.Category
@@ -12,16 +13,34 @@ class ToDoService{
 
     fun getToDosSampleData(): List<ToDo>{
         val toDos = mutableListOf<ToDo>()
-        toDos.add(feedToDoList(
-                "Bordado",
-                "Needle Painting",
-                "Ana",
-                "Wasen"))
-        toDos.add(feedToDoList(
-                "Modelagem",
-                "Tricotin",
-                "Isis",
-                "Kranz"))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Finanças",
+                "Pagar conta de luz"))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Carreira",
+                "Desenvolvimento app TCC"))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Família",
+                "Acompanhamento tarefas da escola filhos"))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Finanças",
+                "Pagar conta celular"))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Finanças",
+                "Monitoramento investimentos"))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Amigos",
+                "Festa de aniversário Fulano"))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Saúde",
+                "Exercícios academia"))
         return toDos
     }
 
@@ -32,6 +51,15 @@ class ToDoService{
         var toDo = ToDo()
         toDo.setProject(projectName, category)
         toDo.setAssignee(firstName, lastName)
+        return toDo
+    }
+
+    private fun feedToDoListHC(
+            projectName: String,
+            category: String,
+            description: String): ToDo{
+        var toDo = ToDo()
+        toDo.setDescription(projectName, category, description)
         return toDo
     }
 }

@@ -15,7 +15,7 @@ class ToDoListActivity : BaseActivity() {
         setContentView(R.layout.activity_todo_list)
 
         val category = intent.getSerializableExtra("category") as Category
-        val title = getString(R.string.todo_list_title)
+        val title = getString(R.string.tarefas)
 
         setupToolbar(R.id.toolbar, title, true)
 
