@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.domain.ToDo
+import br.com.iq.happycalendarandroid.utils.DateUtil
 import kotlinx.android.synthetic.main.adapter_todo.view.*
 
 class ToDoAdapter(
@@ -35,6 +36,7 @@ class ToDoAdapter(
         with(itemView){
             tDescription.text = toDo.description
             tCategory.text = toDo.project.category.name
+            tDateTemp.text = DateUtil.formatDateToString(toDo.sprint.startDate, "dd/MM/yyyy")
         }
         holder.itemView.setOnClickListener{onClick(toDo)}
     }

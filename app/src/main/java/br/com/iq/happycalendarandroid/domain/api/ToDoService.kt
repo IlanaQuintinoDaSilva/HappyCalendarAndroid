@@ -2,45 +2,63 @@ package br.com.iq.happycalendarandroid.domain.api
 
 import android.content.ClipDescription
 import android.content.Context
+import android.text.format.DateUtils
 import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.domain.Category
 import br.com.iq.happycalendarandroid.domain.ToDo
-import java.util.ArrayList
+import br.com.iq.happycalendarandroid.utils.DateUtil
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class ToDoService{
-    private var toDos: List<ToDo> = ArrayList()
+    //private var toDos: List<ToDo> = ArrayList()
 
     fun getToDosSampleData(): List<ToDo>{
         val toDos = mutableListOf<ToDo>()
         toDos.add(feedToDoListHC(
                 "Happy Calendar",
                 "Finanças",
-                "Pagar conta de luz"))
+                "Pagar conta de luz",
+                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
+                ))
         toDos.add(feedToDoListHC(
                 "Happy Calendar",
                 "Carreira",
-                "Desenvolvimento app TCC"))
+                "Desenvolvimento app TCC",
+                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
+        ))
         toDos.add(feedToDoListHC(
                 "Happy Calendar",
                 "Família",
-                "Acompanhamento tarefas da escola filhos"))
+                "Acompanhamento tarefas da escola filhos",
+                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
+        ))
         toDos.add(feedToDoListHC(
                 "Happy Calendar",
                 "Finanças",
-                "Pagar conta celular"))
+                "Pagar conta celular",
+                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
+        ))
         toDos.add(feedToDoListHC(
                 "Happy Calendar",
                 "Finanças",
-                "Monitoramento investimentos"))
+                "Monitoramento investimentos",
+                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
+        ))
         toDos.add(feedToDoListHC(
                 "Happy Calendar",
                 "Amigos",
-                "Festa de aniversário Fulano"))
+                "Festa de aniversário Fulano",
+                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
+        ))
         toDos.add(feedToDoListHC(
                 "Happy Calendar",
                 "Saúde",
-                "Exercícios academia"))
+                "Exercícios academia",
+                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
+        ))
         return toDos
     }
 
@@ -57,9 +75,11 @@ class ToDoService{
     private fun feedToDoListHC(
             projectName: String,
             category: String,
-            description: String): ToDo{
+            description: String,
+            startDate: Date): ToDo{
         var toDo = ToDo()
-        toDo.setDescription(projectName, category, description)
+        toDo.setDescription(projectName, category, description, startDate)
         return toDo
     }
+
 }
