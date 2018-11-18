@@ -13,7 +13,6 @@ import java.util.*
 
 
 class ToDoService{
-    //private var toDos: List<ToDo> = ArrayList()
 
     fun getToDosSampleData(): List<ToDo>{
         val toDos = mutableListOf<ToDo>()
@@ -58,6 +57,18 @@ class ToDoService{
                 "Saúde",
                 "Exercícios academia",
                 DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
+        ))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Família",
+                "Preparar jantar de Natal",
+                DateUtil.StringToDate("23/12/2018", "dd/MM/yyyy")
+        ))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Amigos",
+                "Planejamento Férias",
+                DateUtil.StringToDate("23/12/2018", "dd/MM/yyyy")
         ))
         return toDos
     }

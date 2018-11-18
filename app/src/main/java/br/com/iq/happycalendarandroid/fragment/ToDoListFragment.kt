@@ -17,6 +17,7 @@ import br.com.iq.happycalendarandroid.adapter.ToDoAdapter
 import br.com.iq.happycalendarandroid.domain.Category
 import br.com.iq.happycalendarandroid.domain.ToDo
 import br.com.iq.happycalendarandroid.domain.api.ToDoService
+import br.com.iq.happycalendarandroid.utils.DateUtil
 
 class ToDoListFragment : BaseFragment() {
     private var category = Category.Equilibrio
@@ -69,6 +70,13 @@ class ToDoListFragment : BaseFragment() {
     }
 
     private fun getToDos(){
-        toDos = service.getToDosSampleData()
+        val allToDos = service.getToDosSampleData()
+        val tmp = mutableListOf<ToDo>()
+        for(todo in allToDos){
+            if(DateUtil.formatDateToString(todo.sprint.startDate, "dd/MM/yyyy") == "23/12/2018" ){
+                tmp.add(todo)
+            }
+        }
+        toDos = tmp
     }
 }
