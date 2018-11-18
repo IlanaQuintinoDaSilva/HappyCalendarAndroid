@@ -1,5 +1,6 @@
 package br.com.iq.happycalendarandroid.fragment
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v4.content.ContextCompat
 import android.net.Uri
@@ -18,6 +19,14 @@ import br.com.iq.happycalendarandroid.domain.Category
 import br.com.iq.happycalendarandroid.domain.ToDo
 import br.com.iq.happycalendarandroid.domain.api.ToDoService
 import br.com.iq.happycalendarandroid.utils.DateUtil
+import java.time.DayOfWeek
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.temporal.TemporalAdjusters
+import java.util.*
+import java.time.ZoneId.systemDefault
+
+
 
 class ToDoListFragment : BaseFragment() {
     private var category = Category.Equilibrio
@@ -70,13 +79,31 @@ class ToDoListFragment : BaseFragment() {
     }
 
     private fun getToDos(){
+
         val allToDos = service.getToDosSampleData()
         val tmp = mutableListOf<ToDo>()
         for(todo in allToDos){
             if(DateUtil.formatDateToString(todo.sprint.startDate, "dd/MM/yyyy") == "23/12/2018" ){
+                getSundayDate(todo.sprint.startDate)
                 tmp.add(todo)
             }
         }
         toDos = tmp
+    }
+
+    @SuppressLint("NewApi")
+    private fun getSundayDate(date: Date){
+        val localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        val y = localDate.year
+        val m = localDate.monthValue
+        val d = localDate.dayOfMonth
+
+        var lastSunday = LocalDate.of(y, m, d).with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY))
+        /*val cal = Calendar.getInstance()
+        cal.set(2018, 11, 10)
+        cal.add(Calendar.DAY_OF_WEEK, -(cal.get(Calendar.DAY_OF_WEEK) - 1))*/
+        //System.out.println("Último Domingo " + LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY)))
+
+        System.out.println("Último Domingo " + lastSunday)
     }
 }
