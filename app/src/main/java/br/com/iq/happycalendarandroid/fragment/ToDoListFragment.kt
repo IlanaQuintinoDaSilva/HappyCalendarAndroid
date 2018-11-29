@@ -32,11 +32,12 @@ class ToDoListFragment : BaseFragment() {
     private var category = Category.Equilibrio
     private var toDos: List<ToDo> = ArrayList()
     private var service = ToDoService()
+    private var selectedSprint: Date = Date()
     var rvToDo: RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getToDos()
+        getToDos(selectedSprint)
         category = arguments?.getSerializable("category") as Category
     }
 
@@ -78,32 +79,28 @@ class ToDoListFragment : BaseFragment() {
         rvToDo?.adapter = ToDoAdapter(toDos) { onClickItem(it) }
     }
 
-    private fun getToDos(){
-
+    private fun getToDos(selectedSprint: Date){
+        var dtLastSunday1 = getSundayDate(selectedSprint)
         val allToDos = service.getToDosSampleData()
-        val tmp = mutableListOf<ToDo>()
+        val selectedSprintToDos = mutableListOf<ToDo>()
+
         for(todo in allToDos){
-            if(DateUtil.formatDateToString(todo.sprint.startDate, "dd/MM/yyyy") == "23/12/2018" ){
-                getSundayDate(todo.sprint.startDate)
-                tmp.add(todo)
+            var dtLastSunday2 = getSundayDate(todo.sprint.startDate)
+            if(dtLastSunday1 == dtLastSunday2){
+                selectedSprintToDos.add(todo)
             }
         }
-        toDos = tmp
+        toDos = selectedSprintToDos
     }
 
     @SuppressLint("NewApi")
-    private fun getSundayDate(date: Date){
+    private fun getSundayDate(date: Date): Date{
         val localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
         val y = localDate.year
         val m = localDate.monthValue
         val d = localDate.dayOfMonth
 
         var lastSunday = LocalDate.of(y, m, d).with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY))
-        /*val cal = Calendar.getInstance()
-        cal.set(2018, 11, 10)
-        cal.add(Calendar.DAY_OF_WEEK, -(cal.get(Calendar.DAY_OF_WEEK) - 1))*/
-        //System.out.println("Último Domingo " + LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY)))
-
-        System.out.println("Último Domingo " + lastSunday)
+        return Date.from(lastSunday.atStartOfDay(ZoneId.systemDefault()).toInstant())
     }
 }

@@ -16,6 +16,7 @@ class ToDoService{
 
     fun getToDosSampleData(): List<ToDo>{
         val toDos = mutableListOf<ToDo>()
+        var dtToday: Date = Date()
         toDos.add(feedToDoListHC(
                 "Happy Calendar",
                 "Finanças",
@@ -69,6 +70,24 @@ class ToDoService{
                 "Amigos",
                 "Planejamento Férias",
                 DateUtil.StringToDate("23/12/2018", "dd/MM/yyyy")
+        ))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Carreira",
+                "Treinamento RH",
+                dtToday
+        ))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Casa",
+                "Comprar rack TV",
+                dtToday
+        ))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Casa",
+                "Conserto lavadora",
+                dtToday
         ))
         return toDos
     }
