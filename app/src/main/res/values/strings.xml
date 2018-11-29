@@ -14,4 +14,5 @@
     <string name="senha">Senha</string>
     <string name="entrar">Entrar</string>
     <string name="tarefas">Tarefas</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

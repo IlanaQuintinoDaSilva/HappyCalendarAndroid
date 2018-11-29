@@ -10,8 +10,7 @@
     app:cardPreventCornerOverlap="false"
     app:cardUseCompatPadding="false"
     card_view:cardCornerRadius="2dp"
-    card_view:cardElevation="6dp"
-    android:foreground="?attr/selectableItemBackground">
+    card_view:cardElevation="6dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
