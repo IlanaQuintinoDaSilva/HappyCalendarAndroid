@@ -8,16 +8,20 @@ class ToDo{
     var project: Project = Project()
     var sprint: Sprint = Sprint()
     var assignee: Assignee = Assignee()
+    var done: Boolean = false
 
     fun setProject(name: String, category: String){
         project.name = name
         project.setCategory(category)
     }
 
-    fun setDescription(name: String, category: String, description: String, startDate: Date){
+    fun setDescription(name: String, category: String, description: String){
         project.name = name
         project.setCategory(category)
         this.description = description
+    }
+
+    fun setSprint(startDate: Date){
         sprint.startDate = startDate
     }
 

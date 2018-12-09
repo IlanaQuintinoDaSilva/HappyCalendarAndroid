@@ -1,11 +1,9 @@
 package br.com.iq.happycalendarandroid.adapter
 
-import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.domain.ToDo
 import br.com.iq.happycalendarandroid.utils.DateUtil
@@ -30,13 +28,19 @@ class ToDoAdapter(
     }*/
 
     override fun onBindViewHolder(holder: ToDosViewHolder, position: Int) {
-        val toDo = toDos[position]
+        var toDo = toDos[position]
         val itemView = holder.itemView
 
         with(itemView){
             tDescription.text = toDo.description
             tCategory.text = toDo.project.category.name
             tDateTemp.text = DateUtil.formatDateToString(toDo.sprint.startDate, "dd/MM/yyyy")
+            ckTodo.isChecked = toDo.done
+            ckTodo.setOnClickListener {
+                if(ckTodo.isChecked){
+                    toDo
+                }
+            }
         }
         holder.itemView.setOnClickListener{onClick(toDo)}
     }

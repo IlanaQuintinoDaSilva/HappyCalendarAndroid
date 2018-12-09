@@ -102,14 +102,10 @@ class ToDoService{
         return toDo
     }
 
-    private fun feedToDoListHC(
-            projectName: String,
-            category: String,
-            description: String,
-            startDate: Date): ToDo{
+    private fun feedToDoListHC(projectName: String, category: String, description: String, startDate: Date): ToDo{
         var toDo = ToDo()
-        toDo.setDescription(projectName, category, description, startDate)
+        toDo.setDescription(projectName, category, description)
+        toDo.setSprint(startDate)
         return toDo
     }
-
 }
