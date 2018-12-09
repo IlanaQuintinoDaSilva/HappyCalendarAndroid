@@ -13,7 +13,6 @@ import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.adapter.ToDoAdapter
 import br.com.iq.happycalendarandroid.domain.Category
 import br.com.iq.happycalendarandroid.domain.ToDo
-import br.com.iq.happycalendarandroid.domain.api.ToDoService
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.ZoneId
@@ -23,7 +22,7 @@ import java.util.*
 
 class ToDoListFragment : BaseFragment() {
     private var category = Category.Equilibrio
-    private var service = ToDoService()
+    private var toDos: List<ToDo> = ArrayList()
     private var selectedSprint: Date = Date()
     var rvToDo: RecyclerView? = null
 
@@ -41,7 +40,7 @@ class ToDoListFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvToDo = view?.findViewById<RecyclerView>(R.id.rvToDo)
+        rvToDo = view?.findViewById(R.id.rvToDo)
         rvToDo?.layoutManager = LinearLayoutManager(activity)
         rvToDo?.itemAnimator = DefaultItemAnimator()
         rvToDo?.setHasFixedSize(true)
@@ -53,25 +52,24 @@ class ToDoListFragment : BaseFragment() {
 
     override fun onResume(){
         super.onResume()
-        setupAdapter(HappyCalendarApplication.toDos)
+        setupAdapter(toDos)
     }
 
     private fun setupAdapter(list: List<ToDo>){
-        rvToDo?.adapter = ToDoAdapter(HappyCalendarApplication.toDos) { onClickItem(it) }
+        rvToDo?.adapter = ToDoAdapter(toDos) { onClickItem(it) }
     }
 
     private fun getToDos(selectedSprint: Date){
         var dtLastSunday1 = getSundayDate(selectedSprint)
-        val allToDos = service.getToDosSampleData()
         val selectedSprintToDos = mutableListOf<ToDo>()
 
-        for(todo in allToDos){
+        for(todo in HappyCalendarApplication.toDos){
             var dtLastSunday2 = getSundayDate(todo.sprint.startDate)
             if(dtLastSunday1 == dtLastSunday2){
                 selectedSprintToDos.add(todo)
             }
         }
-        HappyCalendarApplication.toDos = selectedSprintToDos
+        toDos = selectedSprintToDos
     }
 
     @SuppressLint("NewApi")
