@@ -4,8 +4,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.widget.DrawerLayout
+import br.com.iq.happycalendarandroid.HappyCalendarApplication
 import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.domain.Category
+import br.com.iq.happycalendarandroid.domain.api.ToDoService
 import br.com.iq.happycalendarandroid.extensions.addFragment
 import br.com.iq.happycalendarandroid.extensions.setupToolbar
 import br.com.iq.happycalendarandroid.fragment.ToDoListFragment
@@ -13,9 +15,13 @@ import br.com.iq.happycalendarandroid.fragment.ToDoListFragment
 class ToDoListActivity : BaseActivity() {
 
     private lateinit var mDrawerLayout: DrawerLayout
+    private var service = ToDoService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if(!HappyCalendarApplication.launched){
+            feedInitialToDosData()
+        }
         setContentView(R.layout.activity_todo_list)
 
         mDrawerLayout = findViewById(R.id.drawer_layout)
@@ -39,5 +45,10 @@ class ToDoListActivity : BaseActivity() {
         if(savedInstanceState == null){
             addFragment(R.id.container, ToDoListFragment())
         }
+    }
+
+    private fun feedInitialToDosData(){
+        HappyCalendarApplication.toDos = service.getToDosSampleData()
+        HappyCalendarApplication.launched = true
     }
 }

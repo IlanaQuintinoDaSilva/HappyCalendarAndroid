@@ -29,7 +29,7 @@ class ToDoListFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getToDos(selectedSprint)
-        category = arguments?.getSerializable("category") as Category
+        ///category = arguments?.getSerializable("category") as Category
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
