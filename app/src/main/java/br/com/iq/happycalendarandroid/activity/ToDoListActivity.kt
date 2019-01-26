@@ -1,15 +1,19 @@
 package br.com.iq.happycalendarandroid.activity
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.widget.DrawerLayout
 import br.com.iq.happycalendarandroid.HappyCalendarApplication
 import br.com.iq.happycalendarandroid.R
+import br.com.iq.happycalendarandroid.activity.login.LoginActivity
 import br.com.iq.happycalendarandroid.domain.Category
 import br.com.iq.happycalendarandroid.domain.api.ToDoService
 import br.com.iq.happycalendarandroid.extensions.addFragment
 import br.com.iq.happycalendarandroid.extensions.setupToolbar
+import br.com.iq.happycalendarandroid.fragment.BacklogFragment
+import br.com.iq.happycalendarandroid.fragment.StatiticsFragment
 import br.com.iq.happycalendarandroid.fragment.ToDoListFragment
 
 class ToDoListActivity : BaseActivity() {
@@ -30,6 +34,24 @@ class ToDoListActivity : BaseActivity() {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             // set item as selected to persist highlight
             menuItem.isChecked = true
+
+            when (menuItem.itemId) {
+                R.id.nav_actual_sprint ->{
+                    if(savedInstanceState == null){
+                        addFragment(R.id.container, ToDoListFragment())
+                    }
+                }
+                R.id.nav_backlog ->{
+                    if(savedInstanceState == null){
+                        addFragment(R.id.container, BacklogFragment())
+                    }
+                }
+                R.id.nav_statitics ->{
+                    val intent = Intent(context, StatiticsFragment::class.java)
+                    startActivity(intent)
+                }
+            }
+
             // close drawer when item is tapped
             mDrawerLayout.closeDrawers()
 
@@ -49,6 +71,7 @@ class ToDoListActivity : BaseActivity() {
 
     private fun feedInitialToDosData(){
         HappyCalendarApplication.toDos = service.getToDosSampleData()
+        HappyCalendarApplication.backlog = service.getBacklogSampleData()
         HappyCalendarApplication.launched = true
     }
 }

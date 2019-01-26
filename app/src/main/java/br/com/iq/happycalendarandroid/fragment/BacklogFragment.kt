@@ -1,7 +1,10 @@
 package br.com.iq.happycalendarandroid.fragment
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.net.Uri
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -9,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.iq.happycalendarandroid.HappyCalendarApplication
+
 import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.adapter.ToDoAdapter
 import br.com.iq.happycalendarandroid.domain.Category
@@ -19,33 +23,31 @@ import java.time.ZoneId
 import java.time.temporal.TemporalAdjusters
 import java.util.*
 
-
-class ToDoListFragment : BaseFragment() {
+class BacklogFragment : Fragment() {
     private var category = Category.Equilibrio
     private var toDos: List<ToDo> = ArrayList()
     private var selectedSprint: Date = Date()
-    var rvToDo: RecyclerView? = null
+    var rvBacklog: RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getToDos(selectedSprint)
-        ///category = arguments?.getSerializable("category") as Category
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_todo_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_backlog, container, false)
         return view
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvToDo = view?.findViewById(R.id.rvToDo)
-        rvToDo?.layoutManager = LinearLayoutManager(activity)
-        rvToDo?.itemAnimator = DefaultItemAnimator()
-        rvToDo?.setHasFixedSize(true)
+        rvBacklog = view?.findViewById(R.id.rvBacklog)
+        rvBacklog?.layoutManager = LinearLayoutManager(activity)
+        rvBacklog?.itemAnimator = DefaultItemAnimator()
+        rvBacklog?.setHasFixedSize(true)
     }
-
 
     override fun onResume(){
         super.onResume()
@@ -53,7 +55,7 @@ class ToDoListFragment : BaseFragment() {
     }
 
     private fun setupAdapter(list: List<ToDo>){
-        rvToDo?.adapter = ToDoAdapter(toDos) { onClickItem(it) }
+        rvBacklog?.adapter = ToDoAdapter(toDos) { onClickItem(it) }
     }
 
     private fun onClickItem(toDo: ToDo) {
@@ -64,7 +66,7 @@ class ToDoListFragment : BaseFragment() {
         var dtLastSunday1 = getSundayDate(selectedSprint)
         val selectedSprintToDos = mutableListOf<ToDo>()
 
-        for(todo in HappyCalendarApplication.toDos){
+        for(todo in HappyCalendarApplication.backlog){
             var dtLastSunday2 = getSundayDate(todo.sprint.startDate)
             if(dtLastSunday1 == dtLastSunday2){
                 selectedSprintToDos.add(todo)

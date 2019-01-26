@@ -92,6 +92,84 @@ class ToDoService{
         return toDos
     }
 
+    fun getBacklogSampleData(): List<ToDo>{
+        val toDos = mutableListOf<ToDo>()
+        var dtToday: Date = Date()
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Finanças",
+                "Backlog 1",
+                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
+        ))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Carreira",
+                "Backlog 2",
+                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
+        ))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Família",
+                "Backlog 3",
+                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
+        ))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Finanças",
+                "Backlog 4",
+                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
+        ))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Finanças",
+                "Backlog 5",
+                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
+        ))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Amigos",
+                "Backlog 6",
+                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
+        ))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Saúde",
+                "Backlog 7",
+                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
+        ))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Família",
+                "Backlog 8",
+                DateUtil.StringToDate("23/12/2018", "dd/MM/yyyy")
+        ))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Amigos",
+                "Backlog 9",
+                DateUtil.StringToDate("23/12/2018", "dd/MM/yyyy")
+        ))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Carreira",
+                "Backlog 10",
+                dtToday
+        ))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Casa",
+                "Backlog 11",
+                dtToday
+        ))
+        toDos.add(feedToDoListHC(
+                "Happy Calendar",
+                "Casa",
+                "Backlog '12",
+                dtToday
+        ))
+        return toDos
+    }
+
     private fun feedToDoList(projectName: String,
                              category: String,
                              firstName: String,
