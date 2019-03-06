@@ -17,8 +17,8 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-        CreateTodo();
-        readData();
+        //CreateTodo();
+        readDataCategory();
     }
 
     private void CreateTodo(){
@@ -55,5 +55,17 @@ public class CategoryActivity extends AppCompatActivity {
                 projection, selection, selectionArgs, null, null, null);
         int i = c.getCount();
         Log.d("Record Count", String.valueOf(i));
+    }
+
+    private void readDataCategory(){
+        DatabaseHelper helper = new DatabaseHelper(this);
+        SQLiteDatabase db = helper.getReadableDatabase();
+        String[] projection = {TodosContract.CategoriesEntry.COLUMN_DESCRIPTION};
+        String selection = TodosContract.TodosEntry.COLUMN_CATEGORY + " = ?";
+        String[] selectionArgs = {"1"};
+        Cursor c = db.query(TodosContract.CategoriesEntry.TABLE_NAME,
+                projection, null, null, null, null, null);
+        int i = c.getCount();
+        Log.d("Categories Count", String.valueOf(i));
     }
 }
