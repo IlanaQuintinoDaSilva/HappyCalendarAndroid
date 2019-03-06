@@ -75,6 +75,5 @@ class ToDoListActivity : BaseActivity() {
         HappyCalendarApplication.toDos = service.getToDosSampleData()
         HappyCalendarApplication.backlog = service.getBacklogSampleData()
         HappyCalendarApplication.launched = true
-        categoryService.addCategory("Trabalho")
     }
 }
