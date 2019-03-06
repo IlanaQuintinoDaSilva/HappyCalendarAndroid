@@ -9,6 +9,7 @@ import br.com.iq.happycalendarandroid.HappyCalendarApplication
 import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.activity.login.LoginActivity
 import br.com.iq.happycalendarandroid.domain.Category
+import br.com.iq.happycalendarandroid.domain.api.CategoryService
 import br.com.iq.happycalendarandroid.domain.api.ToDoService
 import br.com.iq.happycalendarandroid.extensions.addFragment
 import br.com.iq.happycalendarandroid.extensions.setupToolbar
@@ -20,6 +21,7 @@ class ToDoListActivity : BaseActivity() {
 
     private lateinit var mDrawerLayout: DrawerLayout
     private var service = ToDoService()
+    private var categoryService = CategoryService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,5 +75,6 @@ class ToDoListActivity : BaseActivity() {
         HappyCalendarApplication.toDos = service.getToDosSampleData()
         HappyCalendarApplication.backlog = service.getBacklogSampleData()
         HappyCalendarApplication.launched = true
+        categoryService.addCategory("Trabalho")
     }
 }
