@@ -48,8 +48,12 @@ class ToDoListActivity : BaseActivity() {
                         addFragment(R.id.container, BacklogFragment())
                     }
                 }
-                R.id.nav_statitics ->{
+                /*R.id.nav_statitics ->{
                     val intent = Intent(context, StatiticsFragment::class.java)
+                    startActivity(intent)
+                }*/
+                R.id.nav_category ->{
+                    val intent = Intent(context, CategoryActivity::class.java)
                     startActivity(intent)
                 }
             }

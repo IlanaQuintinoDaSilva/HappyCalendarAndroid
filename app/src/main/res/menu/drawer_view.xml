@@ -8,6 +8,9 @@
             android:id="@+id/nav_backlog"
             android:title="Backlog" />
         <item
+            android:id="@+id/nav_category"
+            android:title="Categorias" />
+        <item
             android:id="@+id/nav_statitics"
             android:title="Estatísticas" />
     </group>
