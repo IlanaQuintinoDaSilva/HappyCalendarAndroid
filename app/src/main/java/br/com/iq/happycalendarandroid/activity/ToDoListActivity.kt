@@ -41,15 +41,13 @@ class ToDoListActivity : BaseActivity() {
             when (menuItem.itemId) {
                 R.id.nav_actual_sprint ->{
                     if(savedInstanceState == null){
-                        title = getString(R.string.actual_sprint)
-                        setupToolbar(R.id.toolbar, title, false)
+                        setToolBarTitle(getString(R.string.actual_sprint))
                         addFragment(R.id.container, ToDoListFragment())
                     }
                 }
                 R.id.nav_backlog ->{
                     if(savedInstanceState == null){
-                        title = getString(R.string.backlog)
-                        setupToolbar(R.id.toolbar, title, false)
+                        setToolBarTitle(getString(R.string.backlog))
                         addFragment(R.id.container, BacklogFragment())
                     }
                 }
@@ -59,8 +57,7 @@ class ToDoListActivity : BaseActivity() {
                 }*/
                 R.id.nav_category ->{
                     val intent = Intent(context, CategoryActivity::class.java)
-                    title = getString(R.string.categories)
-                    setupToolbar(R.id.toolbar, title, false)
+                    setToolBarTitle(getString(R.string.categories))
                     startActivity(intent)
                 }
             }
@@ -73,13 +70,17 @@ class ToDoListActivity : BaseActivity() {
 
             true
         }
-        title = getString(R.string.actual_sprint)
-        setupToolbar(R.id.toolbar, title, false)
+        setToolBarTitle(getString(R.string.actual_sprint))
 
         if(savedInstanceState == null){
             addFragment(R.id.container, ToDoListFragment())
         }
     }
+
+    private fun setToolBarTitle(title:String){
+        setupToolbar(R.id.toolbar, title, false)
+    }
+
 
     private fun feedInitialToDosData(){
         HappyCalendarApplication.toDos = service.getToDosSampleData()
