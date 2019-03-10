@@ -29,7 +29,6 @@ class ToDoListActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //readDataCategory()
         getCategories()
         if(!HappyCalendarApplication.launched){
             feedInitialToDosData()
@@ -100,22 +99,5 @@ class ToDoListActivity : BaseActivity() {
         categoryService.getCategories(helper)
     }
 
-    private fun readDataCategory() {
-        val helper = DatabaseHelper(this)
-        val db = helper.readableDatabase
-        val projection = arrayOf(TodosContract.CategoriesEntry.COLUMN_DESCRIPTION)
-        val selection = TodosContract.TodosEntry.COLUMN_CATEGORY + " = ?"
-        val selectionArgs = arrayOf("1")
-        val c = db.query(TodosContract.CategoriesEntry.TABLE_NAME,
-                projection, null, null, null, null, null)
-        val i = c.count
-        Log.d("Categories Count", i.toString())
-        var rowContent = ""
-        while (c.moveToNext()) {
-            rowContent += c.getString(0) + " - "
-            Log.i("Category Row " + c.position.toString(), rowContent)
-            rowContent = ""
-        }
-        c.close()
-    }
+
 }
