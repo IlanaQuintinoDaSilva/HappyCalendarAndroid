@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "todosapp.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String TABLE_CATEGORIES_CREATE=
             "CREATE TABLE " + TodosContract.CategoriesEntry.TABLE_NAME + " (" +
                     TodosContract.CategoriesEntry._ID + " INTEGER PRIMARY KEY, " +
@@ -18,13 +18,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             "CREATE TABLE " + TodosContract.TodosEntry.TABLE_NAME + " (" +
                     TodosContract.TodosEntry._ID + " INTEGER PRIMARY KEY, " +
                     TodosContract.TodosEntry.COLUMN_TEXT + " TEXT, " +
-                    TodosContract.TodosEntry.COLUMN_CREATED + " TEXT default CURRENT_TIMESTAMP, " +
-                    TodosContract.TodosEntry.COLUMN_EXPIRED + " TEXT, " +
+                    TodosContract.TodosEntry.COLUMN_SPRINT + " TEXT default CURRENT_TIMESTAMP, " +
                     TodosContract.TodosEntry.COLUMN_DONE + " INTEGER, " +
-                    TodosContract.TodosEntry.COLUMN_CATEGORY + " INTEGER, " +
-                    " FOREIGN KEY("+ TodosContract.TodosEntry.COLUMN_CATEGORY + ") REFERENCES " +
-                    TodosContract.CategoriesEntry.TABLE_NAME +
-                    "(" + TodosContract.CategoriesEntry._ID +") " + ")";
+                    TodosContract.TodosEntry.COLUMN_CATEGORY + " TEXT " + ")";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

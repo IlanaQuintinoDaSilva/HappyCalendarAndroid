@@ -17,10 +17,10 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-        //CreateTodo();
+        CreateTodo();
         CreateCategory();
         readDataCategory();
-        //readData();
+        readData();
     }
 
     private void CreateTodo(){
@@ -36,16 +36,12 @@ public class CategoryActivity extends AppCompatActivity {
         db.execSQL(query);*/
 
         ContentValues values = new ContentValues();
-        values.put(TodosContract.TodosEntry.COLUMN_TEXT, "Call Mr. Bean");
-        values.put(TodosContract.TodosEntry.COLUMN_CATEGORY, 1);
-        values.put(TodosContract.TodosEntry.COLUMN_CREATED, "2016-01-02");
+        values.put(TodosContract.TodosEntry.COLUMN_TEXT, "Testando");
+        values.put(TodosContract.TodosEntry.COLUMN_CATEGORY, "Família");
+        values.put(TodosContract.TodosEntry.COLUMN_SPRINT, "2016-01-02");
         values.put(TodosContract.TodosEntry.COLUMN_DONE, 0);
         long todo_id = db.insert(TodosContract.TodosEntry.TABLE_NAME, null, values);
 
-        values.put(TodosContract.TodosEntry.COLUMN_TEXT, "Test");
-        values.put(TodosContract.TodosEntry.COLUMN_CATEGORY, 1);
-        values.put(TodosContract.TodosEntry.COLUMN_CREATED, "2016-01-02");
-        values.put(TodosContract.TodosEntry.COLUMN_DONE, 0);
         todo_id = db.insert(TodosContract.TodosEntry.TABLE_NAME, null, values);
     }
 
@@ -53,14 +49,13 @@ public class CategoryActivity extends AppCompatActivity {
         DatabaseHelper helper = new DatabaseHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
         String[] projection = {TodosContract.TodosEntry.COLUMN_TEXT,
-                TodosContract.TodosEntry.COLUMN_CREATED,
-                TodosContract.TodosEntry.COLUMN_EXPIRED,
+                TodosContract.TodosEntry.COLUMN_SPRINT,
                 TodosContract.TodosEntry.COLUMN_DONE,
                 TodosContract.TodosEntry.COLUMN_CATEGORY};
-        String selection = TodosContract.TodosEntry.COLUMN_CATEGORY + " = ?";
-        String[] selectionArgs = {"1"};
+        //String selection = TodosContract.TodosEntry.COLUMN_CATEGORY + " = ?";
+        //String[] selectionArgs = {"1"};
         Cursor c = db.query(TodosContract.TodosEntry.TABLE_NAME,
-                projection, selection, selectionArgs, null, null, null);
+                projection, null, null, null, null, null);
         int i = c.getCount();
         Log.d("Record Count", String.valueOf(i));
     }

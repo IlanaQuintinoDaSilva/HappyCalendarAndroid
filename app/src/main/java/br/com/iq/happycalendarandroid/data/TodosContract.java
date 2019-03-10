@@ -22,8 +22,7 @@ public final class TodosContract {
         //column (field) names
         public static final String _ID = BaseColumns._ID;
         public static final String COLUMN_TEXT = "text";
-        public static final String COLUMN_CREATED = "created";
-        public static final String COLUMN_EXPIRED = "expired";
+        public static final String COLUMN_SPRINT= "sprint";
         public static final String COLUMN_DONE = "done";
         public static final String COLUMN_CATEGORY = "category";
     }
