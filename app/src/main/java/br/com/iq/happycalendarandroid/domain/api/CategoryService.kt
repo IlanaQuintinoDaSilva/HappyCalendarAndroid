@@ -4,6 +4,7 @@ import android.content.ContentProvider
 import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
+import android.util.Log
 import br.com.iq.happycalendarandroid.data.DatabaseHelper
 import br.com.iq.happycalendarandroid.data.TodosContract
 
@@ -47,5 +48,24 @@ class CategoryService : ContentProvider(){
 
         db?.close()
 
+    }
+
+    fun getCategories(helper: DatabaseHelper) {
+        //val helper = DatabaseHelper(context)
+        val db = helper.readableDatabase
+        val projection = arrayOf(TodosContract.CategoriesEntry.COLUMN_DESCRIPTION)
+        val selection = TodosContract.TodosEntry.COLUMN_CATEGORY + " = ?"
+        val selectionArgs = arrayOf("1")
+        val c = db.query(TodosContract.CategoriesEntry.TABLE_NAME,
+                projection, null, null, null, null, null)
+        val i = c.count
+        Log.d("Categories Count", i.toString())
+        var rowContent = ""
+        while (c.moveToNext()) {
+            rowContent += c.getString(0) + " - "
+            Log.i("Category Row do serviço" + c.position.toString(), rowContent)
+            rowContent = ""
+        }
+        c.close()
     }
 }

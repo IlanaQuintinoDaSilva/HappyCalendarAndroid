@@ -5,9 +5,12 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.widget.DrawerLayout
+import android.util.Log
 import br.com.iq.happycalendarandroid.HappyCalendarApplication
 import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.activity.login.LoginActivity
+import br.com.iq.happycalendarandroid.data.DatabaseHelper
+import br.com.iq.happycalendarandroid.data.TodosContract
 import br.com.iq.happycalendarandroid.domain.Category
 import br.com.iq.happycalendarandroid.domain.api.CategoryService
 import br.com.iq.happycalendarandroid.domain.api.ToDoService
@@ -26,6 +29,8 @@ class ToDoListActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //readDataCategory()
+        getCategories()
         if(!HappyCalendarApplication.launched){
             feedInitialToDosData()
         }
@@ -86,7 +91,31 @@ class ToDoListActivity : BaseActivity() {
         HappyCalendarApplication.toDos = service.getToDosSampleData()
         HappyCalendarApplication.backlog = service.getBacklogSampleData()
         HappyCalendarApplication.launched = true
-        categoryService.addCategory("Casa")
-        categoryService.addCategory("Dinheiro")
+        //categoryService.addCategory("Casa")
+        //categoryService.addCategory("Dinheiro")
+    }
+
+    private fun getCategories(){
+        val helper = DatabaseHelper(this)
+        categoryService.getCategories(helper)
+    }
+
+    private fun readDataCategory() {
+        val helper = DatabaseHelper(this)
+        val db = helper.readableDatabase
+        val projection = arrayOf(TodosContract.CategoriesEntry.COLUMN_DESCRIPTION)
+        val selection = TodosContract.TodosEntry.COLUMN_CATEGORY + " = ?"
+        val selectionArgs = arrayOf("1")
+        val c = db.query(TodosContract.CategoriesEntry.TABLE_NAME,
+                projection, null, null, null, null, null)
+        val i = c.count
+        Log.d("Categories Count", i.toString())
+        var rowContent = ""
+        while (c.moveToNext()) {
+            rowContent += c.getString(0) + " - "
+            Log.i("Category Row " + c.position.toString(), rowContent)
+            rowContent = ""
+        }
+        c.close()
     }
 }

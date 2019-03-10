@@ -19,7 +19,7 @@ public class CategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category);
         //CreateTodo();
         //CreateCategory();
-        readDataCategory();
+        //readDataCategory();
         readData();
     }
 
