@@ -22,6 +22,7 @@ class ToDoListActivity : BaseActivity() {
     private lateinit var mDrawerLayout: DrawerLayout
     private var service = ToDoService()
     private var categoryService = CategoryService()
+    private var title = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +41,15 @@ class ToDoListActivity : BaseActivity() {
             when (menuItem.itemId) {
                 R.id.nav_actual_sprint ->{
                     if(savedInstanceState == null){
+                        title = getString(R.string.actual_sprint)
+                        setupToolbar(R.id.toolbar, title, false)
                         addFragment(R.id.container, ToDoListFragment())
                     }
                 }
                 R.id.nav_backlog ->{
                     if(savedInstanceState == null){
+                        title = getString(R.string.backlog)
+                        setupToolbar(R.id.toolbar, title, false)
                         addFragment(R.id.container, BacklogFragment())
                     }
                 }
@@ -54,6 +59,8 @@ class ToDoListActivity : BaseActivity() {
                 }*/
                 R.id.nav_category ->{
                     val intent = Intent(context, CategoryActivity::class.java)
+                    title = getString(R.string.categories)
+                    setupToolbar(R.id.toolbar, title, false)
                     startActivity(intent)
                 }
             }
@@ -66,8 +73,7 @@ class ToDoListActivity : BaseActivity() {
 
             true
         }
-        val title = getString(R.string.tarefas)
-
+        title = getString(R.string.actual_sprint)
         setupToolbar(R.id.toolbar, title, false)
 
         if(savedInstanceState == null){
