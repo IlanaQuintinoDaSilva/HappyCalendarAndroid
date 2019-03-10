@@ -17,8 +17,8 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-        CreateTodo();
-        CreateCategory();
+        //CreateTodo();
+        //CreateCategory();
         readDataCategory();
         readData();
     }
@@ -58,6 +58,16 @@ public class CategoryActivity extends AppCompatActivity {
                 projection, null, null, null, null, null);
         int i = c.getCount();
         Log.d("Record Count", String.valueOf(i));
+
+        String rowContent = "";
+        while (c.moveToNext()){
+            for(i=0; i<4; i++){
+                rowContent += c.getString(i) + " - ";
+            }
+            Log.i("Todo Row " + String.valueOf(c.getPosition()), rowContent);
+            rowContent = "";
+        }
+        c.close();
     }
 
     private void CreateCategory(){
@@ -81,6 +91,13 @@ public class CategoryActivity extends AppCompatActivity {
                 projection, null, null, null, null, null);
         int i = c.getCount();
         Log.d("Categories Count", String.valueOf(i));
+        String rowContent = "";
+        while (c.moveToNext()){
+            rowContent += c.getString(0) + " - ";
+            Log.i("Category Row " + String.valueOf(c.getPosition()), rowContent);
+            rowContent = "";
+        }
+        c.close();
     }
 
 
