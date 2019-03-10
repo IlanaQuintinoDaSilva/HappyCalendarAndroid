@@ -18,7 +18,9 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
         //CreateTodo();
+        CreateCategory();
         readDataCategory();
+        //readData();
     }
 
     private void CreateTodo(){
@@ -39,6 +41,12 @@ public class CategoryActivity extends AppCompatActivity {
         values.put(TodosContract.TodosEntry.COLUMN_CREATED, "2016-01-02");
         values.put(TodosContract.TodosEntry.COLUMN_DONE, 0);
         long todo_id = db.insert(TodosContract.TodosEntry.TABLE_NAME, null, values);
+
+        values.put(TodosContract.TodosEntry.COLUMN_TEXT, "Test");
+        values.put(TodosContract.TodosEntry.COLUMN_CATEGORY, 1);
+        values.put(TodosContract.TodosEntry.COLUMN_CREATED, "2016-01-02");
+        values.put(TodosContract.TodosEntry.COLUMN_DONE, 0);
+        todo_id = db.insert(TodosContract.TodosEntry.TABLE_NAME, null, values);
     }
 
     private void readData(){
@@ -57,6 +65,17 @@ public class CategoryActivity extends AppCompatActivity {
         Log.d("Record Count", String.valueOf(i));
     }
 
+    private void CreateCategory(){
+        DatabaseHelper helper = new DatabaseHelper(this);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+
+        ContentValues values = new ContentValues();
+        values.put(TodosContract.CategoriesEntry.COLUMN_DESCRIPTION, "Casa");
+        long todo_id = db.insert(TodosContract.CategoriesEntry.TABLE_NAME, null, values);
+
+    }
+
     private void readDataCategory(){
         DatabaseHelper helper = new DatabaseHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
@@ -68,4 +87,6 @@ public class CategoryActivity extends AppCompatActivity {
         int i = c.getCount();
         Log.d("Categories Count", String.valueOf(i));
     }
+
+
 }
