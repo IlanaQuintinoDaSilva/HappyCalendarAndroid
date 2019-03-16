@@ -21,7 +21,6 @@ import java.util.*
 
 
 class ToDoListFragment : BaseFragment() {
-    private var category = Category.Equilibrio
     private var toDos: List<ToDo> = ArrayList()
     private var selectedSprint: Date = Date()
     var rvToDo: RecyclerView? = null

@@ -7,6 +7,7 @@ import android.net.Uri
 import android.util.Log
 import br.com.iq.happycalendarandroid.data.DatabaseHelper
 import br.com.iq.happycalendarandroid.data.TodosContract
+import br.com.iq.happycalendarandroid.domain.CategoryHC
 
 class CategoryService : ContentProvider(){
 
@@ -50,7 +51,8 @@ class CategoryService : ContentProvider(){
 
     }
 
-    fun getCategories(helper: DatabaseHelper) {
+    fun getCategories(helper: DatabaseHelper):List<CategoryHC> {
+        val categories = mutableListOf<CategoryHC>()
         //val helper = DatabaseHelper(context)
         val db = helper.readableDatabase
         val projection = arrayOf(TodosContract.CategoriesEntry.COLUMN_DESCRIPTION)
@@ -62,10 +64,11 @@ class CategoryService : ContentProvider(){
         Log.d("Categories Count", i.toString())
         var rowContent = ""
         while (c.moveToNext()) {
-            rowContent += c.getString(0) + " - "
-            Log.i("Category Row do serviço" + c.position.toString(), rowContent)
-            rowContent = ""
+            var ct = CategoryHC()
+            ct.name = c.getString(0)
+            categories.add(ct)
         }
         c.close()
+        return categories
     }
 }
