@@ -20,12 +20,11 @@ class ToDoListActivity : BaseActivity() {
 
     private lateinit var mDrawerLayout: DrawerLayout
     private var service = ToDoService()
-    private var categoryService = CategoryService()
+
     private var title = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getCategories()
         if(!HappyCalendarApplication.launched){
             feedInitialToDosData()
         }
@@ -52,10 +51,7 @@ class ToDoListActivity : BaseActivity() {
                         addFragment(R.id.container, BacklogFragment())
                     }
                 }
-                /*R.id.nav_statitics ->{
-                    val intent = Intent(context, StatiticsFragment::class.java)
-                    startActivity(intent)
-                }*/
+
                 R.id.nav_category ->{
                     val intent = Intent(context, CategoryActivity::class.java)
                     startActivity(intent)
@@ -90,10 +86,7 @@ class ToDoListActivity : BaseActivity() {
         //categoryService.addCategory("Dinheiro")
     }
 
-    private fun getCategories(){
-        val helper = DatabaseHelper(this)
-        categoryService.getCategories(helper)
-    }
+
 
 
 }
