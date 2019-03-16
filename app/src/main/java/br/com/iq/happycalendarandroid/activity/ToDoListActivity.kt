@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.widget.DrawerLayout
+import android.util.Log
 import br.com.iq.happycalendarandroid.HappyCalendarApplication
 import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.data.DatabaseHelper
+import br.com.iq.happycalendarandroid.data.TodosContract
 import br.com.iq.happycalendarandroid.domain.api.CategoryService
 import br.com.iq.happycalendarandroid.domain.api.ToDoService
 import br.com.iq.happycalendarandroid.extensions.addFragment
@@ -70,6 +72,8 @@ class ToDoListActivity : BaseActivity() {
         if(savedInstanceState == null){
             addFragment(R.id.container, ToDoListFragment())
         }
+
+        readData()
     }
 
     private fun setToolBarTitle(title:String){
@@ -78,11 +82,35 @@ class ToDoListActivity : BaseActivity() {
 
 
     private fun feedInitialToDosData(){
-        HappyCalendarApplication.toDos = service.getToDosSampleData()
+        val helper = DatabaseHelper(this)
+        HappyCalendarApplication.toDos = service.getToDos(helper)
         HappyCalendarApplication.backlog = service.getBacklogSampleData()
         HappyCalendarApplication.launched = true
-        //categoryService.addCategory("Casa")
-        //categoryService.addCategory("Dinheiro")
+
+    }
+
+    private fun readData() {
+        val helper = DatabaseHelper(this)
+        val db = helper.readableDatabase
+        val projection = arrayOf(TodosContract.TodosEntry.COLUMN_TEXT, TodosContract.TodosEntry.COLUMN_SPRINT, TodosContract.TodosEntry.COLUMN_DONE, TodosContract.TodosEntry.COLUMN_CATEGORY)
+        //String selection = TodosContract.TodosEntry.COLUMN_CATEGORY + " = ?";
+        //String[] selectionArgs = {"1"};
+        val c = db.query(TodosContract.TodosEntry.TABLE_NAME,
+                projection, null, null, null, null, null)
+        var i = c.count
+        Log.d("Record Count", i.toString())
+
+        var rowContent = ""
+        while (c.moveToNext()) {
+            i = 0
+            while (i < 4) {
+                rowContent += c.getString(i) + " - "
+                i++
+            }
+            Log.i("Todo Row " + c.position.toString(), rowContent)
+            rowContent = ""
+        }
+        c.close()
     }
 
 

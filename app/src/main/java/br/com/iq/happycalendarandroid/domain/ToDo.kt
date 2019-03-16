@@ -5,6 +5,7 @@ import java.util.*
 class ToDo{
     var id: Long = 0
     var description: String = ""
+    var category: String = ""
     var project: Project = Project()
     var sprint: Sprint = Sprint()
     var assignee: Assignee = Assignee()

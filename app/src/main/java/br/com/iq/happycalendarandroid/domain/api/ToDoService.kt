@@ -1,5 +1,9 @@
 package br.com.iq.happycalendarandroid.domain.api
 
+import android.util.Log
+import br.com.iq.happycalendarandroid.data.DatabaseHelper
+import br.com.iq.happycalendarandroid.data.TodosContract
+import br.com.iq.happycalendarandroid.domain.Category
 import br.com.iq.happycalendarandroid.domain.ToDo
 import br.com.iq.happycalendarandroid.utils.DateUtil
 import java.util.*
@@ -163,15 +167,23 @@ class ToDoService{
         return toDos
     }
 
-    private fun feedToDoList(projectName: String,
-                             category: String,
-                             firstName: String,
-                             lastName: String): ToDo{
-        var toDo = ToDo()
-        toDo.setProject(projectName, category)
-        toDo.setAssignee(firstName, lastName)
-        return toDo
+    fun getToDos(helper: DatabaseHelper):List<ToDo> {
+        val todos = mutableListOf<ToDo>()
+        val db = helper.readableDatabase
+        val projection = arrayOf(TodosContract.TodosEntry.COLUMN_TEXT, TodosContract.TodosEntry.COLUMN_CATEGORY)
+        val c = db.query(TodosContract.TodosEntry.TABLE_NAME,
+                projection, null, null, null, null, null)
+        val i = c.count
+        while (c.moveToNext()) {
+            var td = ToDo()
+            td.description = c.getString(0)
+            td.category = c.getString(1)
+            todos.add(td)
+        }
+        c.close()
+        return todos
     }
+
 
     private fun feedToDoListHC(projectName: String, category: String, description: String, startDate: Date): ToDo{
         var toDo = ToDo()

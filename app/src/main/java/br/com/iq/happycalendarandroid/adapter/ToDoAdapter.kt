@@ -18,14 +18,7 @@ class ToDoAdapter(
         return ToDosViewHolder(view)
     }
 
-    class ToDosViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)/*{
-        var tDescription: TextView
-        var cardView: CardView
-        init {
-            tDescription = view.findViewById(R.id.tDescription)
-            cardView = view.findViewById(R.id.cvToDo)
-        }
-    }*/
+    class ToDosViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onBindViewHolder(holder: ToDosViewHolder, position: Int) {
         var toDo = toDos[position]
@@ -33,8 +26,8 @@ class ToDoAdapter(
 
         with(itemView){
             tDescription.text = toDo.description
-            tCategory.text = toDo.project.category.name
-            tDateTemp.text = DateUtil.formatDateToString(toDo.sprint.startDate, "dd/MM/yyyy")
+            tCategory.text = toDo.category
+            //tDateTemp.text = DateUtil.formatDateToString(toDo.sprint.startDate, "dd/MM/yyyy")
             ckTodo.isChecked = toDo.done
             ckTodo.setOnClickListener {
                 if(ckTodo.isChecked){

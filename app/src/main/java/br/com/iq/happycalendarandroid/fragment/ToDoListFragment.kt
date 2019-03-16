@@ -59,16 +59,7 @@ class ToDoListFragment : BaseFragment() {
     }
 
     private fun getToDos(selectedSprint: Date){
-        var dtLastSunday1 = getSundayDate(selectedSprint)
-        val selectedSprintToDos = mutableListOf<ToDo>()
-
-        for(todo in HappyCalendarApplication.toDos){
-            var dtLastSunday2 = getSundayDate(todo.sprint.startDate)
-            if(dtLastSunday1 == dtLastSunday2){
-                selectedSprintToDos.add(todo)
-            }
-        }
-        toDos = selectedSprintToDos
+        toDos = HappyCalendarApplication.toDos
     }
 
     @SuppressLint("NewApi")
