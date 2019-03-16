@@ -3,7 +3,6 @@ package br.com.iq.happycalendarandroid.activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -11,12 +10,12 @@ import br.com.iq.happycalendarandroid.R;
 import br.com.iq.happycalendarandroid.data.DatabaseHelper;
 import br.com.iq.happycalendarandroid.data.TodosContract;
 
-public class CategoryListActivity extends AppCompatActivity {
+public class CategoryActivityOld extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category);
+        setContentView(R.layout.activity_category_old);
         //CreateTodo();
         //CreateCategory();
         //readDataCategory();

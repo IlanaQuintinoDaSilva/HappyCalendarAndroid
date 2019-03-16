@@ -12,6 +12,8 @@ import br.com.iq.happycalendarandroid.domain.api.ToDoService
 import br.com.iq.happycalendarandroid.extensions.addFragment
 import br.com.iq.happycalendarandroid.extensions.setupToolbar
 import br.com.iq.happycalendarandroid.fragment.BacklogFragment
+import br.com.iq.happycalendarandroid.fragment.CategoryListFragment
+import br.com.iq.happycalendarandroid.fragment.StatiticsFragment
 import br.com.iq.happycalendarandroid.fragment.ToDoListFragment
 
 class ToDoListActivity : BaseActivity() {
@@ -28,6 +30,7 @@ class ToDoListActivity : BaseActivity() {
             feedInitialToDosData()
         }
         setContentView(R.layout.activity_todo_list)
+        setToolBarTitle(getString(R.string.actual_sprint))
 
         mDrawerLayout = findViewById(R.id.drawer_layout)
 
@@ -54,8 +57,7 @@ class ToDoListActivity : BaseActivity() {
                     startActivity(intent)
                 }*/
                 R.id.nav_category ->{
-                    val intent = Intent(context, CategoryListActivity::class.java)
-                    setToolBarTitle(getString(R.string.categories))
+                    val intent = Intent(context, CategoryActivity::class.java)
                     startActivity(intent)
                 }
             }
@@ -68,7 +70,7 @@ class ToDoListActivity : BaseActivity() {
 
             true
         }
-        setToolBarTitle(getString(R.string.actual_sprint))
+
 
         if(savedInstanceState == null){
             addFragment(R.id.container, ToDoListFragment())
