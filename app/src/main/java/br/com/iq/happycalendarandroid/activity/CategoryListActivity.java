@@ -11,7 +11,7 @@ import br.com.iq.happycalendarandroid.R;
 import br.com.iq.happycalendarandroid.data.DatabaseHelper;
 import br.com.iq.happycalendarandroid.data.TodosContract;
 
-public class CategoryActivity extends AppCompatActivity {
+public class CategoryListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -32,7 +32,7 @@
             android:authorities="br.com.iq.happycalendarandroid.todosprovider"
             android:exported="false" />
 
-        <activity android:name=".activity.CategoryActivity" />
+        <activity android:name=".activity.CategoryListActivity" />
     </application>
 
 </manifest>

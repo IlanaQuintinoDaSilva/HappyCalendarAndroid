@@ -1,23 +1,17 @@
 package br.com.iq.happycalendarandroid.activity
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.widget.DrawerLayout
-import android.util.Log
 import br.com.iq.happycalendarandroid.HappyCalendarApplication
 import br.com.iq.happycalendarandroid.R
-import br.com.iq.happycalendarandroid.activity.login.LoginActivity
 import br.com.iq.happycalendarandroid.data.DatabaseHelper
-import br.com.iq.happycalendarandroid.data.TodosContract
-import br.com.iq.happycalendarandroid.domain.Category
 import br.com.iq.happycalendarandroid.domain.api.CategoryService
 import br.com.iq.happycalendarandroid.domain.api.ToDoService
 import br.com.iq.happycalendarandroid.extensions.addFragment
 import br.com.iq.happycalendarandroid.extensions.setupToolbar
 import br.com.iq.happycalendarandroid.fragment.BacklogFragment
-import br.com.iq.happycalendarandroid.fragment.StatiticsFragment
 import br.com.iq.happycalendarandroid.fragment.ToDoListFragment
 
 class ToDoListActivity : BaseActivity() {
@@ -60,7 +54,7 @@ class ToDoListActivity : BaseActivity() {
                     startActivity(intent)
                 }*/
                 R.id.nav_category ->{
-                    val intent = Intent(context, CategoryActivity::class.java)
+                    val intent = Intent(context, CategoryListActivity::class.java)
                     setToolBarTitle(getString(R.string.categories))
                     startActivity(intent)
                 }
