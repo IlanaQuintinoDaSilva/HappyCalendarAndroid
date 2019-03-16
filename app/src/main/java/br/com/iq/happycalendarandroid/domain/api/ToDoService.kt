@@ -1,14 +1,7 @@
 package br.com.iq.happycalendarandroid.domain.api
 
-import android.content.ClipDescription
-import android.content.Context
-import android.text.format.DateUtils
-import br.com.iq.happycalendarandroid.R
-import br.com.iq.happycalendarandroid.domain.Category
 import br.com.iq.happycalendarandroid.domain.ToDo
 import br.com.iq.happycalendarandroid.utils.DateUtil
-import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.util.*
 
 

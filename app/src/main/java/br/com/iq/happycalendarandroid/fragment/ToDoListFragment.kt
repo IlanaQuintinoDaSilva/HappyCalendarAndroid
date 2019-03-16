@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import br.com.iq.happycalendarandroid.HappyCalendarApplication
 import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.adapter.ToDoAdapter
-import br.com.iq.happycalendarandroid.domain.Category
 import br.com.iq.happycalendarandroid.domain.ToDo
 import java.time.DayOfWeek
 import java.time.LocalDate

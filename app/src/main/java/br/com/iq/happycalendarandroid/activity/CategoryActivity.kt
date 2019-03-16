@@ -1,13 +1,10 @@
 package br.com.iq.happycalendarandroid.activity
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import br.com.iq.happycalendarandroid.HappyCalendarApplication
 import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.data.DatabaseHelper
-import br.com.iq.happycalendarandroid.domain.Category
 import br.com.iq.happycalendarandroid.domain.api.CategoryService
 import br.com.iq.happycalendarandroid.extensions.addFragment
 import br.com.iq.happycalendarandroid.fragment.CategoryListFragment

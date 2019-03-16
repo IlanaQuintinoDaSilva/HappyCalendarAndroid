@@ -1,8 +1,6 @@
 package br.com.iq.happycalendarandroid.fragment
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
@@ -15,7 +13,6 @@ import br.com.iq.happycalendarandroid.HappyCalendarApplication
 
 import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.adapter.ToDoAdapter
-import br.com.iq.happycalendarandroid.domain.Category
 import br.com.iq.happycalendarandroid.domain.ToDo
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -24,7 +21,6 @@ import java.time.temporal.TemporalAdjusters
 import java.util.*
 
 class BacklogFragment : Fragment() {
-    private var category = Category.Equilibrio
     private var toDos: List<ToDo> = ArrayList()
     private var selectedSprint: Date = Date()
     var rvBacklog: RecyclerView? = null

@@ -3,14 +3,9 @@ package br.com.iq.happycalendarandroid.activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import br.com.iq.happycalendarandroid.R
-import br.com.iq.happycalendarandroid.R.id.fab
-import br.com.iq.happycalendarandroid.R.id.toolbar
-import br.com.iq.happycalendarandroid.domain.Category
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -26,7 +21,6 @@ class MainActivity : BaseActivity() {
 
         fab.setOnClickListener { view ->
             val intent = Intent(context, ToDoListActivity::class.java)
-            intent.putExtra("category", Category.Equilibrio)
             startActivity(intent)
         }
     }

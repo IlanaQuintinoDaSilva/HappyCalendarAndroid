@@ -4,16 +4,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import br.com.iq.happycalendarandroid.HappyCalendarApplication.toDos
 import br.com.iq.happycalendarandroid.R
-import br.com.iq.happycalendarandroid.domain.CategoryHC
-import br.com.iq.happycalendarandroid.domain.ToDo
-import br.com.iq.happycalendarandroid.utils.DateUtil
+import br.com.iq.happycalendarandroid.domain.Category
 import kotlinx.android.synthetic.main.adapter_todo.view.*
 
 class CategoryAdapter(
-        val categories: List<CategoryHC>,
-        val onClick: (CategoryHC) -> Unit) : RecyclerView.Adapter<CategoryAdapter.CategoriesViewHolder>(){
+        val categories: List<Category>,
+        val onClick: (Category) -> Unit) : RecyclerView.Adapter<CategoryAdapter.CategoriesViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.adapter_category, parent, false)
