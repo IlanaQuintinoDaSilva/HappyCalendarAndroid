@@ -12,7 +12,6 @@ import br.com.iq.happycalendarandroid.domain.api.CategoryService
 import br.com.iq.happycalendarandroid.extensions.addFragment
 import br.com.iq.happycalendarandroid.fragment.CategoryListFragment
 import kotlinx.android.synthetic.main.activity_category.*
-import kotlinx.android.synthetic.main.activity_float_button.*
 
 class CategoryActivity : BaseActivity() {
 

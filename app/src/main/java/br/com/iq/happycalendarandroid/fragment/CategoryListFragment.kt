@@ -19,7 +19,6 @@ import br.com.iq.happycalendarandroid.adapter.CategoryAdapter
 import br.com.iq.happycalendarandroid.adapter.ToDoAdapter
 import br.com.iq.happycalendarandroid.domain.CategoryHC
 import br.com.iq.happycalendarandroid.domain.ToDo
-import kotlinx.android.synthetic.main.activity_float_button.*
 import kotlinx.android.synthetic.main.fragment_category_list.*
 import br.com.iq.happycalendarandroid.activity.MainActivity
 import android.content.Intent
