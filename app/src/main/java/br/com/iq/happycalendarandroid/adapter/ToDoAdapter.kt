@@ -25,6 +25,7 @@ class ToDoAdapter(
         val itemView = holder.itemView
 
         with(itemView){
+            tTodoId.text = toDo.id.toString()
             tDescription.text = toDo.description
             tCategory.text = toDo.category
             //tDateTemp.text = DateUtil.formatDateToString(toDo.sprint.startDate, "dd/MM/yyyy")

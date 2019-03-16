@@ -170,7 +170,8 @@ class ToDoService{
     fun getToDos(helper: DatabaseHelper):List<ToDo> {
         val todos = mutableListOf<ToDo>()
         val db = helper.readableDatabase
-        val projection = arrayOf(TodosContract.TodosEntry.COLUMN_TEXT, TodosContract.TodosEntry.COLUMN_CATEGORY)
+        val projection = arrayOf(TodosContract.TodosEntry.COLUMN_TEXT, TodosContract.TodosEntry.COLUMN_CATEGORY,
+                TodosContract.TodosEntry._ID)
         val c = db.query(TodosContract.TodosEntry.TABLE_NAME,
                 projection, null, null, null, null, null)
         val i = c.count
@@ -178,6 +179,7 @@ class ToDoService{
             var td = ToDo()
             td.description = c.getString(0)
             td.category = c.getString(1)
+            td.id = c.getLong(2)
             todos.add(td)
         }
         c.close()
