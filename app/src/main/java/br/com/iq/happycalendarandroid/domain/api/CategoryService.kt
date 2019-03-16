@@ -39,8 +39,8 @@ class CategoryService : ContentProvider(){
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    fun addCategory(category: String){
-        var db = helper?.writableDatabase
+    fun addCategory(category: String, helper: DatabaseHelper){
+        var db = helper.writableDatabase
         var values = ContentValues().apply {
             put(TodosContract.CategoriesEntry.COLUMN_DESCRIPTION, category)
         }
