@@ -17,4 +17,6 @@
     <string name="todo_list_title">Oficinas Presenciais</string>
     <string name="trabalho">Trabalho</string>
     <string name="title_activity_float_button">FloatButtonActivity</string>
+    <string name="category">Categoria</string>
+    <string name="add">adicionar</string>
 </resources>
