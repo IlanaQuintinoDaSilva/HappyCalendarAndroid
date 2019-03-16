@@ -21,7 +21,6 @@ class ToDoListActivity : BaseActivity() {
     private lateinit var mDrawerLayout: DrawerLayout
     private var service = ToDoService()
 
-    private var title = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
