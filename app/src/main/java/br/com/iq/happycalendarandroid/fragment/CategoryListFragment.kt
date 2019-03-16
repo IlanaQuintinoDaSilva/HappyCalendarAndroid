@@ -3,6 +3,7 @@ package br.com.iq.happycalendarandroid.fragment
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
@@ -18,6 +19,12 @@ import br.com.iq.happycalendarandroid.adapter.CategoryAdapter
 import br.com.iq.happycalendarandroid.adapter.ToDoAdapter
 import br.com.iq.happycalendarandroid.domain.CategoryHC
 import br.com.iq.happycalendarandroid.domain.ToDo
+import kotlinx.android.synthetic.main.activity_float_button.*
+import kotlinx.android.synthetic.main.fragment_category_list.*
+import br.com.iq.happycalendarandroid.activity.MainActivity
+import android.content.Intent
+import android.support.design.widget.FloatingActionButton
+import br.com.iq.happycalendarandroid.activity.AddCategoryActivity
 
 
 class CategoryListFragment : BaseFragment() {
@@ -28,6 +35,7 @@ class CategoryListFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         categories = HappyCalendarApplication.categories
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
