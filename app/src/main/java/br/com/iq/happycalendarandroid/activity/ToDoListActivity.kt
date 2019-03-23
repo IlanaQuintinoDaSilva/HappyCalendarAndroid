@@ -27,9 +27,8 @@ class ToDoListActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if(!HappyCalendarApplication.launched){
-            feedInitialToDosData()
-        }
+        feedInitialToDosData()
+
         setContentView(R.layout.activity_todo_list)
         setToolBarTitle(getString(R.string.actual_sprint))
 
@@ -86,7 +85,6 @@ class ToDoListActivity : BaseActivity() {
         val helper = DatabaseHelper(this)
         HappyCalendarApplication.toDos = service.getToDos(helper, "0")
         HappyCalendarApplication.backlog = service.getToDos(helper, "1")
-        HappyCalendarApplication.launched = true
         //service.addToDo("Fazer almoço", "Casa", helper)
 
     }
