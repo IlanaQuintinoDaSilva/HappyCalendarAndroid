@@ -10,6 +10,7 @@ class ToDo{
     var sprint: Sprint = Sprint()
     var assignee: Assignee = Assignee()
     var done: Boolean = false
+    var backlog: Long = 0
 
     fun setProject(name: String, category: String){
         project.name = name

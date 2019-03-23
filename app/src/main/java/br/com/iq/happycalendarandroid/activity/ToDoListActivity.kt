@@ -1,5 +1,6 @@
 package br.com.iq.happycalendarandroid.activity
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -72,8 +73,8 @@ class ToDoListActivity : BaseActivity() {
         if(savedInstanceState == null){
             addFragment(R.id.container, ToDoListFragment())
         }
-
-        readData()
+        //CreateTodo()
+        //readData()
     }
 
     private fun setToolBarTitle(title:String){
@@ -83,18 +84,18 @@ class ToDoListActivity : BaseActivity() {
 
     private fun feedInitialToDosData(){
         val helper = DatabaseHelper(this)
-        HappyCalendarApplication.toDos = service.getToDos(helper)
-        HappyCalendarApplication.backlog = service.getBacklogSampleData()
+        HappyCalendarApplication.toDos = service.getToDos(helper, "0")
+        HappyCalendarApplication.backlog = service.getToDos(helper, "1")
         HappyCalendarApplication.launched = true
 
     }
 
-    private fun readData() {
+    /*private fun readData() {
         val helper = DatabaseHelper(this)
         val db = helper.readableDatabase
         val projection = arrayOf(TodosContract.TodosEntry.COLUMN_TEXT, TodosContract.TodosEntry.COLUMN_SPRINT, TodosContract.TodosEntry.COLUMN_DONE, TodosContract.TodosEntry.COLUMN_CATEGORY)
         val selection = TodosContract.TodosEntry.COLUMN_BACKLOG + " = ?"
-        val selectionArgs = arrayOf("0")
+        val selectionArgs = arrayOf("1")
         val c = db.query(TodosContract.TodosEntry.TABLE_NAME,
                 projection, selection, selectionArgs, null, null, null)
         var i = c.count
@@ -111,9 +112,22 @@ class ToDoListActivity : BaseActivity() {
             rowContent = ""
         }
         c.close()
+    }*/
+
+    private fun CreateTodo() {
+        val helper = DatabaseHelper(this)
+        val db = helper.writableDatabase
+
+        val values = ContentValues()
+        values.put(TodosContract.TodosEntry.COLUMN_TEXT, "Limpar a casa")
+        values.put(TodosContract.TodosEntry.COLUMN_CATEGORY, "Casa")
+        values.put(TodosContract.TodosEntry.COLUMN_SPRINT, "2016-01-02")
+        values.put(TodosContract.TodosEntry.COLUMN_DONE, 0)
+        values.put(TodosContract.TodosEntry.COLUMN_BACKLOG, 1)
+        var todo_id = db.insert(TodosContract.TodosEntry.TABLE_NAME, null, values)
+
+        todo_id = db.insert(TodosContract.TodosEntry.TABLE_NAME, null, values)
     }
-
-
 
 
 }

@@ -1,5 +1,6 @@
 package br.com.iq.happycalendarandroid.domain.api
 
+import android.content.ContentValues
 import android.util.Log
 import br.com.iq.happycalendarandroid.data.DatabaseHelper
 import br.com.iq.happycalendarandroid.data.TodosContract
@@ -167,25 +168,39 @@ class ToDoService{
         return toDos
     }
 
-    fun getToDos(helper: DatabaseHelper):List<ToDo> {
+    fun getToDos(helper: DatabaseHelper, isBacklog: String):List<ToDo> {
         val todos = mutableListOf<ToDo>()
         val db = helper.readableDatabase
         val projection = arrayOf(TodosContract.TodosEntry.COLUMN_TEXT, TodosContract.TodosEntry.COLUMN_CATEGORY,
-                TodosContract.TodosEntry._ID)
+                TodosContract.TodosEntry._ID, TodosContract.TodosEntry.COLUMN_BACKLOG)
+        val selection = TodosContract.TodosEntry.COLUMN_BACKLOG + " = ?"
+        val selectionArgs = arrayOf(isBacklog)
         val c = db.query(TodosContract.TodosEntry.TABLE_NAME,
-                projection, null, null, null, null, null)
+                projection, selection, selectionArgs, null, null, null)
         val i = c.count
         while (c.moveToNext()) {
             var td = ToDo()
             td.description = c.getString(0)
             td.category = c.getString(1)
             td.id = c.getLong(2)
+            td.backlog = c.getLong(3)
             todos.add(td)
         }
         c.close()
         return todos
     }
 
+    fun addToDo(category: String, helper: DatabaseHelper){
+        var db = helper.writableDatabase
+        var values = ContentValues().apply {
+            put(TodosContract.CategoriesEntry.COLUMN_DESCRIPTION, category)
+        }
+
+        val newRowId = db?.insert(TodosContract.CategoriesEntry.TABLE_NAME, null, values)
+
+        db?.close()
+
+    }
 
     private fun feedToDoListHC(projectName: String, category: String, description: String, startDate: Date): ToDo{
         var toDo = ToDo()

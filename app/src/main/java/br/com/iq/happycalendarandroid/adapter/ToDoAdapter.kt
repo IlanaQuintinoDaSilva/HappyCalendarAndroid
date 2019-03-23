@@ -26,6 +26,7 @@ class ToDoAdapter(
 
         with(itemView){
             tTodoId.text = toDo.id.toString()
+            tBacklog.text = toDo.backlog.toString()
             tDescription.text = toDo.description
             tCategory.text = toDo.category
             //tDateTemp.text = DateUtil.formatDateToString(toDo.sprint.startDate, "dd/MM/yyyy")
