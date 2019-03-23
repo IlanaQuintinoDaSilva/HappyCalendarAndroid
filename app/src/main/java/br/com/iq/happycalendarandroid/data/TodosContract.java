@@ -25,6 +25,7 @@ public final class TodosContract {
         public static final String COLUMN_SPRINT= "sprint";
         public static final String COLUMN_DONE = "done";
         public static final String COLUMN_CATEGORY = "category";
+        public static final String COLUMN_BACKLOG = "backlog";
     }
 
     public static final class CategoriesEntry implements BaseColumns {

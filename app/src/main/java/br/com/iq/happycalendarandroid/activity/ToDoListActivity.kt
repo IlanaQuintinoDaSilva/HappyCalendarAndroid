@@ -93,10 +93,10 @@ class ToDoListActivity : BaseActivity() {
         val helper = DatabaseHelper(this)
         val db = helper.readableDatabase
         val projection = arrayOf(TodosContract.TodosEntry.COLUMN_TEXT, TodosContract.TodosEntry.COLUMN_SPRINT, TodosContract.TodosEntry.COLUMN_DONE, TodosContract.TodosEntry.COLUMN_CATEGORY)
-        //String selection = TodosContract.TodosEntry.COLUMN_CATEGORY + " = ?";
-        //String[] selectionArgs = {"1"};
+        val selection = TodosContract.TodosEntry.COLUMN_BACKLOG + " = ?"
+        val selectionArgs = arrayOf("0")
         val c = db.query(TodosContract.TodosEntry.TABLE_NAME,
-                projection, null, null, null, null, null)
+                projection, selection, selectionArgs, null, null, null)
         var i = c.count
         Log.d("Record Count", i.toString())
 
