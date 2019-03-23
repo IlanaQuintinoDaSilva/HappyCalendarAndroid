@@ -2,6 +2,7 @@ package br.com.iq.happycalendarandroid.domain.api
 
 import android.content.ContentValues
 import android.util.Log
+import br.com.iq.happycalendarandroid.R.string.category
 import br.com.iq.happycalendarandroid.data.DatabaseHelper
 import br.com.iq.happycalendarandroid.data.TodosContract
 import br.com.iq.happycalendarandroid.domain.Category
@@ -190,13 +191,16 @@ class ToDoService{
         return todos
     }
 
-    fun addToDo(category: String, helper: DatabaseHelper){
+    fun addToDo(description: String, category: String, helper: DatabaseHelper){
         var db = helper.writableDatabase
         var values = ContentValues().apply {
-            put(TodosContract.CategoriesEntry.COLUMN_DESCRIPTION, category)
+            put(TodosContract.TodosEntry.COLUMN_TEXT, description)
+            put(TodosContract.TodosEntry.COLUMN_CATEGORY, category)
+            put(TodosContract.TodosEntry.COLUMN_DONE, 0)
+            put(TodosContract.TodosEntry.COLUMN_BACKLOG, 1)
         }
 
-        val newRowId = db?.insert(TodosContract.CategoriesEntry.TABLE_NAME, null, values)
+        val newRowId = db?.insert(TodosContract.TodosEntry.TABLE_NAME, null, values)
 
         db?.close()
 

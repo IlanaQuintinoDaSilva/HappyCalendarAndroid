@@ -87,6 +87,7 @@ class ToDoListActivity : BaseActivity() {
         HappyCalendarApplication.toDos = service.getToDos(helper, "0")
         HappyCalendarApplication.backlog = service.getToDos(helper, "1")
         HappyCalendarApplication.launched = true
+        service.addToDo("Fazer almoço", "Casa", helper)
 
     }
 
