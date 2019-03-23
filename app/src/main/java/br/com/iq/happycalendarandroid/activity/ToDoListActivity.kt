@@ -84,7 +84,7 @@ class ToDoListActivity : BaseActivity() {
     private fun feedInitialToDosData(){
         val helper = DatabaseHelper(this)
         HappyCalendarApplication.toDos = service.getToDos(helper, "0")
-        HappyCalendarApplication.backlog = service.getToDos(helper, "1")
+        //HappyCalendarApplication.backlog = service.getToDos(helper, "1")
         //service.addToDo("Fazer almoço", "Casa", helper)
 
     }

@@ -34,10 +34,6 @@ class BacklogFragment : Fragment() {
         super.onCreate(savedInstanceState)
         getToDos(selectedSprint)
 
-        btAddToDo.setOnClickListener {
-            val intent = Intent(context, AddBacklogActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
