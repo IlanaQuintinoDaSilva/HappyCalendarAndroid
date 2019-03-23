@@ -13,6 +13,7 @@
     <string name="login">Login</string>
     <string name="senha">Senha</string>
     <string name="tarefas">Tarefas</string>
+    <string name="task">Tarefa</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="todo_list_title">Oficinas Presenciais</string>
     <string name="trabalho">Trabalho</string>
