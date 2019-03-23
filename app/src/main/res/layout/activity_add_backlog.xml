@@ -12,12 +12,12 @@
         android:layout_gravity="center"/>
     <EditText
         android:id="@+id/etBacklog"
-        android:layout_width="2dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:hint="@string/task"
         android:layout_gravity="center"/>
     <Button
-        android:id="@+id/btAddBacklog"
+        android:id="@+id/btAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add"
