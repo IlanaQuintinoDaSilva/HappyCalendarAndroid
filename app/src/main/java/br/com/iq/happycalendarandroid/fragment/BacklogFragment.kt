@@ -1,6 +1,7 @@
 package br.com.iq.happycalendarandroid.fragment
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
@@ -12,8 +13,12 @@ import android.view.ViewGroup
 import br.com.iq.happycalendarandroid.HappyCalendarApplication
 
 import br.com.iq.happycalendarandroid.R
+import br.com.iq.happycalendarandroid.activity.AddBacklogActivity
+import br.com.iq.happycalendarandroid.activity.AddCategoryActivity
 import br.com.iq.happycalendarandroid.adapter.ToDoAdapter
 import br.com.iq.happycalendarandroid.domain.ToDo
+import kotlinx.android.synthetic.main.activity_category.*
+import kotlinx.android.synthetic.main.fragment_backlog.*
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.ZoneId
@@ -28,6 +33,11 @@ class BacklogFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getToDos(selectedSprint)
+
+        btAddToDo.setOnClickListener {
+            val intent = Intent(context, AddBacklogActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

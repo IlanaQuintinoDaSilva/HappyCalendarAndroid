@@ -49,8 +49,8 @@ class ToDoListActivity : BaseActivity() {
                 }
                 R.id.nav_backlog ->{
                     if(savedInstanceState == null){
-                        setToolBarTitle(getString(R.string.backlog))
-                        addFragment(R.id.container, BacklogFragment())
+                        val intent = Intent(context, BacklogActivity::class.java)
+                        startActivity(intent)
                     }
                 }
 
@@ -87,7 +87,7 @@ class ToDoListActivity : BaseActivity() {
         HappyCalendarApplication.toDos = service.getToDos(helper, "0")
         HappyCalendarApplication.backlog = service.getToDos(helper, "1")
         HappyCalendarApplication.launched = true
-        service.addToDo("Fazer almoço", "Casa", helper)
+        //service.addToDo("Fazer almoço", "Casa", helper)
 
     }
 

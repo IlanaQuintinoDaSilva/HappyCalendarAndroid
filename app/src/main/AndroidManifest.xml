@@ -38,7 +38,9 @@
             android:name=".fragment.FloatButtonActivity"
             android:label="@string/title_activity_float_button"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activity.AddCategoryActivity"></activity>
+        <activity android:name=".activity.AddCategoryActivity" />
+        <activity android:name=".activity.AddBacklogActivity" />
+        <activity android:name=".activity.BacklogActivity"></activity>
     </application>
 
 </manifest>
