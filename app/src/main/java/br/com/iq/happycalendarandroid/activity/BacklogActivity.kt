@@ -37,8 +37,8 @@ class BacklogActivity : BaseActivity() {
             when (menuItem.itemId) {
                 R.id.nav_actual_sprint ->{
                     if(savedInstanceState == null){
-                        setToolBarTitle(getString(R.string.actual_sprint))
-                        addFragment(R.id.container, ToDoListFragment())
+                        val intent = Intent(context, ToDoListActivity::class.java)
+                        startActivity(intent)
                     }
                 }
                 R.id.nav_backlog ->{
