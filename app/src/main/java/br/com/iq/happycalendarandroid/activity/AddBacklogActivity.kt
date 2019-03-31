@@ -8,8 +8,10 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import br.com.iq.happycalendarandroid.HappyCalendarApplication
 import br.com.iq.happycalendarandroid.R
+import br.com.iq.happycalendarandroid.R.string.category
 import br.com.iq.happycalendarandroid.data.DatabaseHelper
 import br.com.iq.happycalendarandroid.domain.Category
 import br.com.iq.happycalendarandroid.domain.ToDo
@@ -29,16 +31,32 @@ class AddBacklogActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_backlog)
         btAdd.setOnClickListener{
-            category = etBacklogCategory.text.toString()
+            //category = etBacklogCategory.text.toString()
             backlog = etBacklog.text.toString()
             addBacklog(backlog,category)
             val intent = Intent(context, BacklogActivity::class.java)
             startActivity(intent)
         }
+
+
         getCategories()
 
         val spinner: Spinner = findViewById(R.id.planets_spinner)
         // Create an ArrayAdapter using the string array and a default spinner layout
+
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+                category = parent.getItemAtPosition(pos).toString()
+
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Code to perform some action when nothing is selected
+            }
+        }
+
 
         categories = HappyCalendarApplication.categories
         var arraySize =  categories.count()
@@ -69,9 +87,10 @@ class AddBacklogActivity : BaseActivity() {
     }
 }
 
-class SpinnerActivity : Activity(), AdapterView.OnItemSelectedListener {
+/*class SpinnerActivity : Activity(), AdapterView.OnItemSelectedListener {
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+
         // An item was selected. You can retrieve the selected item using
         // parent.getItemAtPosition(pos)
         /*val spinner: Spinner = findViewById(R.id.spinner)
@@ -81,4 +100,4 @@ class SpinnerActivity : Activity(), AdapterView.OnItemSelectedListener {
     override fun onNothingSelected(parent: AdapterView<*>) {
         // Another interface callback
     }
-}
+}*/
