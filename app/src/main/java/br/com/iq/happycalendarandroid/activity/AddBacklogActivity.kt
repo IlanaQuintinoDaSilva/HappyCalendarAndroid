@@ -31,7 +31,6 @@ class AddBacklogActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_backlog)
         btAdd.setOnClickListener{
-            //category = etBacklogCategory.text.toString()
             backlog = etBacklog.text.toString()
             addBacklog(backlog,category)
             val intent = Intent(context, BacklogActivity::class.java)
