@@ -42,8 +42,8 @@ class CategoryActivity : BaseActivity() {
                 }
                 R.id.nav_backlog ->{
                     if(savedInstanceState == null){
-                        setToolBarTitle(getString(R.string.backlog))
-                        addFragment(R.id.container, BacklogFragment())
+                        val intent = Intent(context, BacklogActivity::class.java)
+                        startActivity(intent)
                     }
                 }
 
