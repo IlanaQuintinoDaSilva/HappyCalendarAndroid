@@ -13,5 +13,8 @@
         <item
             android:id="@+id/nav_statitics"
             android:title="Estatísticas" />
+        <item
+            android:id="@+id/nav_google_drive"
+            android:title="Backup" />
     </group>
 </menu>

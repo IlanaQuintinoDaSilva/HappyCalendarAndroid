@@ -18,6 +18,7 @@ import br.com.iq.happycalendarandroid.fragment.BacklogFragment
 import br.com.iq.happycalendarandroid.fragment.CategoryListFragment
 import br.com.iq.happycalendarandroid.fragment.StatiticsFragment
 import br.com.iq.happycalendarandroid.fragment.ToDoListFragment
+import br.com.iq.happycalendarandroid.google_drive.CloudBackup
 
 class ToDoListActivity : BaseActivity() {
 
@@ -55,6 +56,11 @@ class ToDoListActivity : BaseActivity() {
 
                 R.id.nav_category ->{
                     val intent = Intent(context, CategoryActivity::class.java)
+                    startActivity(intent)
+                }
+
+                R.id.nav_google_drive ->{
+                    val intent = Intent(context, CloudBackup::class.java)
                     startActivity(intent)
                 }
             }

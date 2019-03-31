@@ -40,7 +40,8 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".activity.AddCategoryActivity" />
         <activity android:name=".activity.AddBacklogActivity" />
-        <activity android:name=".activity.BacklogActivity"></activity>
+        <activity android:name=".activity.BacklogActivity" />
+        <activity android:name=".google_drive.CloudBackup" />
     </application>
 
 </manifest>
