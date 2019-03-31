@@ -10,6 +10,10 @@
         android:layout_height="wrap_content"
         android:hint="@string/category"
         android:layout_gravity="center"/>
+    <Spinner
+        android:id="@+id/planets_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
     <EditText
         android:id="@+id/etBacklog"
         android:layout_width="250dp"
