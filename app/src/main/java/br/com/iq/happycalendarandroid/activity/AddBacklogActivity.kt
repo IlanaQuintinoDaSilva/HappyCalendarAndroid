@@ -8,8 +8,11 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import br.com.iq.happycalendarandroid.HappyCalendarApplication
 import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.data.DatabaseHelper
+import br.com.iq.happycalendarandroid.domain.Category
+import br.com.iq.happycalendarandroid.domain.ToDo
 import br.com.iq.happycalendarandroid.domain.api.CategoryService
 import br.com.iq.happycalendarandroid.domain.api.ToDoService
 import kotlinx.android.synthetic.main.activity_add_backlog.*
@@ -19,6 +22,8 @@ class AddBacklogActivity : BaseActivity() {
     private var category: String = ""
     private var backlog: String = ""
     private var toDoService = ToDoService()
+    private var categories: List<Category> = ArrayList()
+    private var categoryService = CategoryService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,29 +35,37 @@ class AddBacklogActivity : BaseActivity() {
             val intent = Intent(context, BacklogActivity::class.java)
             startActivity(intent)
         }
+        getCategories()
 
         val spinner: Spinner = findViewById(R.id.planets_spinner)
         // Create an ArrayAdapter using the string array and a default spinner layout
 
-        val myStrings = arrayOf("One", "Two", "Three", "Four", "Five")
+        categories = HappyCalendarApplication.categories
+        var arraySize =  categories.count()
+
+
+        var myStrings = arrayOfNulls<String>(arraySize)
+        categories = HappyCalendarApplication.categories
+
+
+        var i = 0
+        for (category in HappyCalendarApplication.categories){
+            myStrings[i] = category.name
+            i++
+        }
 
         spinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, myStrings)
 
-        /*ArrayAdapter.createFromResource(
-                this,
-                R.array.planets_array,
-                android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            spinner.adapter = adapter
-        }*/
     }
 
     private fun addBacklog(backlog: String, category: String){
         val helper = DatabaseHelper(this)
         toDoService.addToDo(backlog, category, helper)
+    }
+
+    private fun getCategories(){
+        val helper = DatabaseHelper(this)
+        HappyCalendarApplication.categories =  categoryService.getCategories(helper)
     }
 }
 
