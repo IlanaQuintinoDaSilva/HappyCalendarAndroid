@@ -13,6 +13,7 @@ import br.com.iq.happycalendarandroid.extensions.setupToolbar
 import br.com.iq.happycalendarandroid.fragment.BacklogFragment
 import br.com.iq.happycalendarandroid.fragment.CategoryListFragment
 import br.com.iq.happycalendarandroid.fragment.ToDoListFragment
+import br.com.iq.happycalendarandroid.google_drive.CloudBackup
 import kotlinx.android.synthetic.main.activity_category.*
 
 class CategoryActivity : BaseActivity() {
@@ -46,10 +47,13 @@ class CategoryActivity : BaseActivity() {
                         startActivity(intent)
                     }
                 }
-
                 R.id.nav_category ->{
                     setToolBarTitle(getString(R.string.categories))
                     addFragment(R.id.container, CategoryListFragment())
+                }
+                R.id.nav_google_drive ->{
+                    val intent = Intent(context, CloudBackup::class.java)
+                    startActivity(intent)
                 }
             }
 

@@ -53,12 +53,10 @@ class ToDoListActivity : BaseActivity() {
                         startActivity(intent)
                     }
                 }
-
                 R.id.nav_category ->{
                     val intent = Intent(context, CategoryActivity::class.java)
                     startActivity(intent)
                 }
-
                 R.id.nav_google_drive ->{
                     val intent = Intent(context, CloudBackup::class.java)
                     startActivity(intent)
