@@ -51,6 +51,7 @@ import java.io.IOException;
 
 import br.com.iq.happycalendarandroid.R;
 import br.com.iq.happycalendarandroid.activity.MainActivity;
+import br.com.iq.happycalendarandroid.activity.ToDoListActivity;
 
 import static android.provider.ContactsContract.Directory.PACKAGE_NAME;
 
@@ -73,6 +74,8 @@ public class CloudBackup extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cloud_backup);
+
+
     }
 
 
@@ -186,7 +189,7 @@ public class CloudBackup extends AppCompatActivity
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(CloudBackup.this, MainActivity.class);
+        Intent i = new Intent(CloudBackup.this, ToDoListActivity.class);
         startActivity(i);
     }
 
