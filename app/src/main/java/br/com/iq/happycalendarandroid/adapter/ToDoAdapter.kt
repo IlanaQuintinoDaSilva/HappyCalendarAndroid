@@ -12,6 +12,7 @@ import br.com.iq.happycalendarandroid.HappyCalendarApplication
 import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.R.id.*
 import br.com.iq.happycalendarandroid.activity.BacklogActivity
+import br.com.iq.happycalendarandroid.activity.ToDoListActivity
 import br.com.iq.happycalendarandroid.domain.ToDo
 import br.com.iq.happycalendarandroid.domain.api.CategoryService
 import br.com.iq.happycalendarandroid.domain.api.ToDoService
@@ -50,6 +51,8 @@ class ToDoAdapter(
                     if(ckTodo.isChecked){
                         //toDo.done = 1
                         service.updateDone(toDo.id)
+                        val intent = Intent(context, ToDoListActivity::class.java)
+                        context.startActivity(intent)
                     }
                 }
             }else{
