@@ -13,179 +13,26 @@ import java.util.*
 
 class ToDoService{
 
-    fun getToDosSampleData(): List<ToDo>{
-        val toDos = mutableListOf<ToDo>()
-        var dtToday: Date = Date()
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Finanças",
-                "Pagar conta de luz",
-                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
-                ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Carreira",
-                "Desenvolvimento app TCC",
-                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Família",
-                "Acompanhamento tarefas da escola filhos",
-                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Finanças",
-                "Pagar conta celular",
-                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Finanças",
-                "Monitoramento investimentos",
-                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Amigos",
-                "Festa de aniversário Fulano",
-                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Saúde",
-                "Exercícios academia",
-                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Família",
-                "Preparar jantar de Natal",
-                DateUtil.StringToDate("23/12/2018", "dd/MM/yyyy")
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Amigos",
-                "Planejamento Férias",
-                DateUtil.StringToDate("23/12/2018", "dd/MM/yyyy")
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Carreira",
-                "Treinamento RH",
-                dtToday
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Casa",
-                "Comprar rack TV",
-                dtToday
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Casa",
-                "Conserto lavadora",
-                dtToday
-        ))
-        return toDos
-    }
-
-    fun getBacklogSampleData(): List<ToDo>{
-        val toDos = mutableListOf<ToDo>()
-        var dtToday: Date = Date()
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Finanças",
-                "Backlog 1",
-                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Carreira",
-                "Backlog 2",
-                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Família",
-                "Backlog 3",
-                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Finanças",
-                "Backlog 4",
-                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Finanças",
-                "Backlog 5",
-                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Amigos",
-                "Backlog 6",
-                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Saúde",
-                "Backlog 7",
-                DateUtil.StringToDate("07/01/2018", "dd/MM/yyyy")
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Família",
-                "Backlog 8",
-                DateUtil.StringToDate("23/12/2018", "dd/MM/yyyy")
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Amigos",
-                "Backlog 9",
-                DateUtil.StringToDate("23/12/2018", "dd/MM/yyyy")
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Carreira",
-                "Backlog 10",
-                dtToday
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Casa",
-                "Backlog 11",
-                dtToday
-        ))
-        toDos.add(feedToDoListHC(
-                "Happy Calendar",
-                "Casa",
-                "Backlog '12",
-                dtToday
-        ))
-        return toDos
-    }
-
     fun getToDos(helper: DatabaseHelper, isBacklog: String):List<ToDo> {
         val todos = mutableListOf<ToDo>()
         val db = helper.readableDatabase
         val projection = arrayOf(TodosContract.TodosEntry.COLUMN_TEXT, TodosContract.TodosEntry.COLUMN_CATEGORY,
-                TodosContract.TodosEntry._ID, TodosContract.TodosEntry.COLUMN_BACKLOG)
-        val selection = TodosContract.TodosEntry.COLUMN_BACKLOG + " = ?"
+                TodosContract.TodosEntry._ID, TodosContract.TodosEntry.COLUMN_BACKLOG, TodosContract.TodosEntry.COLUMN_DONE)
+        val selection =  TodosContract.TodosEntry.COLUMN_BACKLOG + " = ?"
         val selectionArgs = arrayOf(isBacklog)
         val c = db.query(TodosContract.TodosEntry.TABLE_NAME,
                 projection, selection, selectionArgs, null, null, null)
         val i = c.count
         while (c.moveToNext()) {
             var td = ToDo()
-            td.description = c.getString(0)
-            td.category = c.getString(1)
-            td.id = c.getLong(2)
-            td.backlog = c.getLong(3)
-            todos.add(td)
+            //if(c.getLong(4).equals(0)){
+                td.description = c.getString(0)
+                td.category = c.getString(1)
+                td.id = c.getLong(2)
+                td.backlog = c.getLong(3)
+                //td.done = c.getInt(4)
+                todos.add(td)
+            //}
         }
         c.close()
         return todos
@@ -206,22 +53,22 @@ class ToDoService{
 
     }
 
+    fun updateDone(id: Int, helper: DatabaseHelper) {
+        var db = helper.writableDatabase
+        var values = ContentValues().apply {
+            put(TodosContract.TodosEntry.COLUMN_DONE, 1)
+        }
+        val selectionArgs = arrayOf(id.toString())
+        var numRows = db?.update(TodosContract.TodosEntry.TABLE_NAME,values,
+                TodosContract.TodosEntry._ID + "=?", selectionArgs)
 
-    /*private void updateTodo() {
-        int id = 2;
-        String[] args = {String.valueOf(id)};
-        ContentValues values = new ContentValues();
-        values.put(TodosContract.TodosEntry.COLUMN_TEXT, "Call Mr Clark Kent");
-        int numRows = getContentResolver().update(TodosContract.TodosEntry.CONTENT_URI, values,
-                TodosContract.TodosEntry._ID + "=?", args);
-        Log.d("Update Rows ", String.valueOf(numRows));
-    }*/
-
-    private fun feedToDoListHC(projectName: String, category: String, description: String, startDate: Date): ToDo{
-        var toDo = ToDo()
-        toDo.setDescription(projectName, category, description)
-        toDo.setSprint(startDate)
-        return toDo
+        //int id = 2;
+        //String[] args = {String.valueOf(id)};
+        //ContentValues values = new ContentValues();
+        //values.put(TodosContract.TodosEntry.COLUMN_TEXT, "Call Mr Clark Kent");
+        //int numRows = getContentResolver().update(TodosContract.TodosEntry.CONTENT_URI, values,
+                //TodosContract.TodosEntry._ID + "=?", args);
+        //Log.d("Update Rows ", String.valueOf(numRows));
     }
 
 }

@@ -1,5 +1,6 @@
 package br.com.iq.happycalendarandroid
 
+import br.com.iq.happycalendarandroid.data.DatabaseHelper
 import br.com.iq.happycalendarandroid.domain.Category
 import br.com.iq.happycalendarandroid.domain.ToDo
 import java.util.*
@@ -9,4 +10,5 @@ object HappyCalendarApplication {
     var categories: List<Category> = ArrayList()
     var backlog: List<ToDo> = ArrayList()
     var launched: Boolean = false
+    var dbHelper: DatabaseHelper? = null
 }

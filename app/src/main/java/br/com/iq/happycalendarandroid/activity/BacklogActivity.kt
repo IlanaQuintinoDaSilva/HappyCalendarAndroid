@@ -82,6 +82,7 @@ class BacklogActivity : BaseActivity() {
 
     private fun feedBacklogData(){
         val helper = DatabaseHelper(this)
+        HappyCalendarApplication.dbHelper = helper
         HappyCalendarApplication.backlog = service.getToDos(helper, "1")
 
     }

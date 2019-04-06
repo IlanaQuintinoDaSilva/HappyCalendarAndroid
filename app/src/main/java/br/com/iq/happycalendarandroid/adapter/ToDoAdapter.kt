@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.domain.ToDo
+import br.com.iq.happycalendarandroid.domain.api.CategoryService
+import br.com.iq.happycalendarandroid.domain.api.ToDoService
 import br.com.iq.happycalendarandroid.utils.DateUtil
 import kotlinx.android.synthetic.main.adapter_todo.view.*
 
 class ToDoAdapter(
         val toDos: List<ToDo>,
         val onClick: (ToDo) -> Unit) : RecyclerView.Adapter<ToDoAdapter.ToDosViewHolder>(){
+    private var service = CategoryService()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDosViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.adapter_todo, parent, false)
@@ -30,10 +33,18 @@ class ToDoAdapter(
             tDescription.text = toDo.description
             tCategory.text = toDo.category
             //tDateTemp.text = DateUtil.formatDateToString(toDo.sprint.startDate, "dd/MM/yyyy")
-            ckTodo.isChecked = toDo.done
+            ckTodo.isChecked = false
+            ckBacklog.isChecked = false
             ckTodo.setOnClickListener {
                 if(ckTodo.isChecked){
-                    toDo
+                    //toDo.done = 1
+                    service.updateDone(toDo.id)
+                }
+            }
+            ckBacklog.setOnClickListener {
+                if(ckBacklog.isChecked){
+                    //toDo.backlog = 0
+                    service.updateBacklog(toDo.id)
                 }
             }
         }
