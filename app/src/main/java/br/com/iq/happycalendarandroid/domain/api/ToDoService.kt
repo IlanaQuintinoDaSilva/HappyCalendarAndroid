@@ -206,10 +206,22 @@ class ToDoService{
 
     }
 
+
+    /*private void updateTodo() {
+        int id = 2;
+        String[] args = {String.valueOf(id)};
+        ContentValues values = new ContentValues();
+        values.put(TodosContract.TodosEntry.COLUMN_TEXT, "Call Mr Clark Kent");
+        int numRows = getContentResolver().update(TodosContract.TodosEntry.CONTENT_URI, values,
+                TodosContract.TodosEntry._ID + "=?", args);
+        Log.d("Update Rows ", String.valueOf(numRows));
+    }*/
+
     private fun feedToDoListHC(projectName: String, category: String, description: String, startDate: Date): ToDo{
         var toDo = ToDo()
         toDo.setDescription(projectName, category, description)
         toDo.setSprint(startDate)
         return toDo
     }
+
 }

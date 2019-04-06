@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "todosapp.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static final String TABLE_CATEGORIES_CREATE=
             "CREATE TABLE " + TodosContract.CategoriesEntry.TABLE_NAME + " (" +
                     TodosContract.CategoriesEntry._ID + " INTEGER PRIMARY KEY, " +
@@ -19,9 +19,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                     TodosContract.TodosEntry._ID + " INTEGER PRIMARY KEY, " +
                     TodosContract.TodosEntry.COLUMN_TEXT + " TEXT, " +
                     TodosContract.TodosEntry.COLUMN_SPRINT + " TEXT default CURRENT_TIMESTAMP, " +
-                    TodosContract.TodosEntry.COLUMN_DONE + " INTEGER, " +
+                    TodosContract.TodosEntry.COLUMN_DONE + " INTEGER default 0, " +
                     TodosContract.TodosEntry.COLUMN_CATEGORY + " TEXT, " +
-                    TodosContract.TodosEntry.COLUMN_BACKLOG + " INTEGER " + ")";
+                    TodosContract.TodosEntry.COLUMN_BACKLOG + " INTEGER default 1" + ")";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -31,13 +31,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLE_CATEGORIES_CREATE);
         db.execSQL(TABLE_TODOS_CREATE);
-        ContentValues values = new ContentValues();
-        values.put (TodosContract.CategoriesEntry.COLUMN_DESCRIPTION, "Work");
-        long idCat = db.insert(TodosContract.CategoriesEntry.TABLE_NAME, null, values);
-        values.clear();
-        values.put(TodosContract.TodosEntry.COLUMN_CATEGORY, String.valueOf(idCat));
-        values.put(TodosContract.TodosEntry.COLUMN_TEXT, "Welcome to Todos!");
-        long idTodo = db.insert(TodosContract.TodosEntry.TABLE_NAME, null, values);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
