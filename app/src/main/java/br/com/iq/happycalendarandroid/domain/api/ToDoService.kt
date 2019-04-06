@@ -2,6 +2,7 @@ package br.com.iq.happycalendarandroid.domain.api
 
 import android.content.ContentValues
 import android.util.Log
+import br.com.iq.happycalendarandroid.HappyCalendarApplication
 import br.com.iq.happycalendarandroid.R.string.category
 import br.com.iq.happycalendarandroid.data.DatabaseHelper
 import br.com.iq.happycalendarandroid.data.TodosContract
@@ -12,6 +13,8 @@ import java.util.*
 
 
 class ToDoService{
+
+    private var helper: DatabaseHelper? = null
 
     fun getToDos(helper: DatabaseHelper, isBacklog: String):List<ToDo> {
         val todos = mutableListOf<ToDo>()
@@ -53,8 +56,9 @@ class ToDoService{
 
     }
 
-    fun updateDone(id: Int, helper: DatabaseHelper) {
-        var db = helper.writableDatabase
+    fun updateDone(id: Long) {
+        helper = HappyCalendarApplication.dbHelper
+        var db = helper?.writableDatabase
         var values = ContentValues().apply {
             put(TodosContract.TodosEntry.COLUMN_DONE, 1)
         }
@@ -67,8 +71,27 @@ class ToDoService{
         //ContentValues values = new ContentValues();
         //values.put(TodosContract.TodosEntry.COLUMN_TEXT, "Call Mr Clark Kent");
         //int numRows = getContentResolver().update(TodosContract.TodosEntry.CONTENT_URI, values,
-                //TodosContract.TodosEntry._ID + "=?", args);
+        //TodosContract.TodosEntry._ID + "=?", args);
         //Log.d("Update Rows ", String.valueOf(numRows));
+    }
+
+    fun updateBacklog(id: Long) {
+        helper = HappyCalendarApplication.dbHelper
+        var db = helper?.writableDatabase
+        var values = ContentValues().apply {
+            put(TodosContract.TodosEntry.COLUMN_BACKLOG, 0)
+        }
+        val selectionArgs = arrayOf(id.toString())
+        var numRows = db?.update(TodosContract.TodosEntry.TABLE_NAME,values,
+                TodosContract.TodosEntry._ID + "=?", selectionArgs)
+
+        //int id = 2;
+        //String[] args = {String.valueOf(id)};
+        //ContentValues values = new ContentValues();
+        //values.put(TodosContract.TodosEntry.COLUMN_TEXT, "Call Mr Clark Kent");
+        //int numRows = getContentResolver().update(TodosContract.TodosEntry.CONTENT_URI, values,
+        //TodosContract.TodosEntry._ID + "=?", args);
+        Log.d("Update Rows ", numRows.toString());
     }
 
 }

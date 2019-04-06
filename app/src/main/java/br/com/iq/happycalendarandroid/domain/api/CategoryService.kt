@@ -73,41 +73,4 @@ class CategoryService : ContentProvider(){
         return categories
     }
 
-    fun updateDone(id: Long) {
-        helper = DatabaseHelper(context)
-        var db = helper?.writableDatabase
-        var values = ContentValues().apply {
-            put(TodosContract.TodosEntry.COLUMN_DONE, 1)
-        }
-        val selectionArgs = arrayOf(id.toString())
-        var numRows = db?.update(TodosContract.TodosEntry.TABLE_NAME,values,
-                TodosContract.TodosEntry._ID + "=?", selectionArgs)
-
-        //int id = 2;
-        //String[] args = {String.valueOf(id)};
-        //ContentValues values = new ContentValues();
-        //values.put(TodosContract.TodosEntry.COLUMN_TEXT, "Call Mr Clark Kent");
-        //int numRows = getContentResolver().update(TodosContract.TodosEntry.CONTENT_URI, values,
-        //TodosContract.TodosEntry._ID + "=?", args);
-        //Log.d("Update Rows ", String.valueOf(numRows));
-    }
-
-    fun updateBacklog(id: Long) {
-        helper = HappyCalendarApplication.dbHelper
-        var db = helper?.writableDatabase
-        var values = ContentValues().apply {
-            put(TodosContract.TodosEntry.COLUMN_BACKLOG, 0)
-        }
-        val selectionArgs = arrayOf(id.toString())
-        var numRows = db?.update(TodosContract.TodosEntry.TABLE_NAME,values,
-                TodosContract.TodosEntry._ID + "=?", selectionArgs)
-
-        //int id = 2;
-        //String[] args = {String.valueOf(id)};
-        //ContentValues values = new ContentValues();
-        //values.put(TodosContract.TodosEntry.COLUMN_TEXT, "Call Mr Clark Kent");
-        //int numRows = getContentResolver().update(TodosContract.TodosEntry.CONTENT_URI, values,
-        //TodosContract.TodosEntry._ID + "=?", args);
-        Log.d("Update Rows ", numRows.toString());
-    }
 }

@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.adapter_todo.view.*
 class ToDoAdapter(
         val toDos: List<ToDo>,
         val onClick: (ToDo) -> Unit) : RecyclerView.Adapter<ToDoAdapter.ToDosViewHolder>(){
-    private var service = CategoryService()
+    private var service = ToDoService()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDosViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.adapter_todo, parent, false)
