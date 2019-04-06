@@ -25,17 +25,17 @@ class ToDoService{
         val selectionArgs = arrayOf(isBacklog)
         val c = db.query(TodosContract.TodosEntry.TABLE_NAME,
                 projection, selection, selectionArgs, null, null, null)
-        val i = c.count
+        //val i = c.count
         while (c.moveToNext()) {
             var td = ToDo()
-            //if(c.getLong(4).equals(0)){
+            if(c.getLong(4).equals(0)){
                 td.description = c.getString(0)
                 td.category = c.getString(1)
                 td.id = c.getLong(2)
                 td.backlog = c.getLong(3)
-                //td.done = c.getInt(4)
+                td.done = c.getInt(4)
                 todos.add(td)
-            //}
+            }
         }
         c.close()
         return todos
@@ -65,14 +65,6 @@ class ToDoService{
         val selectionArgs = arrayOf(id.toString())
         var numRows = db?.update(TodosContract.TodosEntry.TABLE_NAME,values,
                 TodosContract.TodosEntry._ID + "=?", selectionArgs)
-
-        //int id = 2;
-        //String[] args = {String.valueOf(id)};
-        //ContentValues values = new ContentValues();
-        //values.put(TodosContract.TodosEntry.COLUMN_TEXT, "Call Mr Clark Kent");
-        //int numRows = getContentResolver().update(TodosContract.TodosEntry.CONTENT_URI, values,
-        //TodosContract.TodosEntry._ID + "=?", args);
-        //Log.d("Update Rows ", String.valueOf(numRows));
     }
 
     fun updateBacklog(id: Long) {
@@ -84,14 +76,7 @@ class ToDoService{
         val selectionArgs = arrayOf(id.toString())
         var numRows = db?.update(TodosContract.TodosEntry.TABLE_NAME,values,
                 TodosContract.TodosEntry._ID + "=?", selectionArgs)
-
-        //int id = 2;
-        //String[] args = {String.valueOf(id)};
-        //ContentValues values = new ContentValues();
-        //values.put(TodosContract.TodosEntry.COLUMN_TEXT, "Call Mr Clark Kent");
-        //int numRows = getContentResolver().update(TodosContract.TodosEntry.CONTENT_URI, values,
-        //TodosContract.TodosEntry._ID + "=?", args);
-        Log.d("Update Rows ", numRows.toString());
+        //Log.d("Update Rows ", numRows.toString())
     }
 
 }
