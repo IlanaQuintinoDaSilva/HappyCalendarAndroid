@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.widget.DrawerLayout
 import android.util.Log
+import android.view.View
+import android.widget.CheckBox
 import br.com.iq.happycalendarandroid.HappyCalendarApplication
 import br.com.iq.happycalendarandroid.R
 import br.com.iq.happycalendarandroid.data.DatabaseHelper
@@ -31,6 +33,7 @@ class ToDoListActivity : BaseActivity() {
         feedInitialToDosData()
 
         setContentView(R.layout.activity_todo_list)
+        HappyCalendarApplication.toDosScreen = true
         setToolBarTitle(getString(R.string.actual_sprint))
 
         mDrawerLayout = findViewById(R.id.drawer_layout)

@@ -28,14 +28,17 @@ class ToDoService{
         //val i = c.count
         while (c.moveToNext()) {
             var td = ToDo()
-            if(c.getLong(4).equals(0)){
+            //if(c.getLong(4).equals(0)){
                 td.description = c.getString(0)
                 td.category = c.getString(1)
                 td.id = c.getLong(2)
                 td.backlog = c.getLong(3)
                 td.done = c.getInt(4)
-                todos.add(td)
-            }
+                if(td.done.equals(0)){
+                    todos.add(td)
+                }
+
+            //}
         }
         c.close()
         return todos

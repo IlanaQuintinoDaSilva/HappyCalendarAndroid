@@ -11,4 +11,5 @@ object HappyCalendarApplication {
     var backlog: List<ToDo> = ArrayList()
     var launched: Boolean = false
     var dbHelper: DatabaseHelper? = null
+    var toDosScreen:Boolean = false
 }

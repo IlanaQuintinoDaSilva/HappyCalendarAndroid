@@ -26,6 +26,7 @@ class BacklogActivity : BaseActivity() {
         feedBacklogData()
 
         setContentView(R.layout.activity_backlog)
+        HappyCalendarApplication.toDosScreen = false
         setToolBarTitle(getString(R.string.backlog))
 
         mDrawerLayout = findViewById(R.id.drawer_layout_bk)
@@ -74,6 +75,11 @@ class BacklogActivity : BaseActivity() {
             val intent = Intent(context, AddBacklogActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        feedBacklogData()
     }
 
     private fun setToolBarTitle(title:String){
